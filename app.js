@@ -85,6 +85,7 @@ const API = {
 
   /* 内部：实际执行保存（带自动重试） */
   async _doSave(data) {
+    let success = false;
     try {
       let res = await fetch("/api/save", {
         method: "POST",
@@ -101,7 +102,6 @@ const API = {
           } else {
             await this.login(State.currentUser.name);
           }
-          // 用新 token 重试保存
           res = await fetch("/api/save", {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
@@ -112,16 +112,30 @@ const API = {
         }
       }
 
-      if (!res.ok) {
+      if (res.ok) {
+        success = true;
+      } else {
         console.error("[API] 保存失败:", res.status);
         if (typeof toast === "function") toast("保存失败，请刷新页面重试", "danger");
-        this._justSaved = false;
       }
     } catch (err) {
       console.error("[API] 保存出错:", err);
       if (typeof toast === "function") toast("网络错误，保存失败", "danger");
-      this._justSaved = false;
     }
+
+    // 保存失败时：从服务器重新加载数据，确保本地与服务器一致
+    if (!success) {
+      try {
+        State.data = await this.load();
+        if (State.currentUser && State.currentView) {
+          const modalOpen = !document.getElementById("modal-overlay").classList.contains("hidden");
+          if (!modalOpen && !State.timer.running) navigateTo(State.currentView);
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    // 延迟清除标志：等 SSE 广播到达后再放行
+    setTimeout(() => { this._justSaved = false; }, 2000);
   },
 
   /* 重置为默认数据 */
@@ -237,7 +251,7 @@ const API = {
     if (this._sse) this._sse.close();
     this._sse = new EventSource("/api/events");
     this._sse.onmessage = (event) => {
-      if (this._justSaved) { this._justSaved = false; return; }
+      if (this._justSaved) { return; }  // 不消耗标志，仅跳过
       try {
         const newData = JSON.parse(event.data);
         onUpdate(newData);
