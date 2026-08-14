@@ -79,11 +79,48 @@ const API = {
     this._localSave(data);
     if (this.online) {
       this._justSaved = true;
-      fetch("/api/save", {
+      this._doSave(data);
+    }
+  },
+
+  /* 内部：实际执行保存（带自动重试） */
+  async _doSave(data) {
+    try {
+      let res = await fetch("/api/save", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
         body: JSON.stringify(data),
-      }).catch((err) => console.error("Save failed:", err));
+      });
+
+      // 401：服务器重启导致 token 失效，自动重新登录后重试
+      if (res.status === 401 && State.currentUser) {
+        console.log("[API] 保存失败(401)，自动重新登录...");
+        try {
+          if (State.currentUser.loginToken) {
+            await this.qrLogin(State.currentUser.loginToken);
+          } else {
+            await this.login(State.currentUser.name);
+          }
+          // 用新 token 重试保存
+          res = await fetch("/api/save", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
+            body: JSON.stringify(data),
+          });
+        } catch (e) {
+          console.error("[API] 重新登录失败:", e);
+        }
+      }
+
+      if (!res.ok) {
+        console.error("[API] 保存失败:", res.status);
+        if (typeof toast === "function") toast("保存失败，请刷新页面重试", "danger");
+        this._justSaved = false;
+      }
+    } catch (err) {
+      console.error("[API] 保存出错:", err);
+      if (typeof toast === "function") toast("网络错误，保存失败", "danger");
+      this._justSaved = false;
     }
   },
 
