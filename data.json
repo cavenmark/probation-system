@@ -503,7 +503,7 @@
       "submittedAt": "2026-07-19T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-20T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总结认真，理解到位，继续加油���"
     },
     {
       "id": "lr_u1_6",
@@ -1003,7 +1003,7 @@
       "submittedAt": "2026-07-25T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-26T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总结认真，理解到位，继��加油！"
     },
     {
       "id": "lr_u2_12",
@@ -1541,7 +1541,7 @@
       "status": "approved",
       "actualDuration": 59,
       "requiredDuration": 45,
-      "summary": "今日学习了职业发展规��与晋升路径，重点掌握了双通道职业发展体系。通过学习，我对综合素养有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了职业发展����与晋升路径，重点掌握了双通道职业发展体系。通过学习，我对综合素养有了更深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-08-08T00:00:00.000Z",
       "reviewedBy": "u5",
       "reviewedAt": "2026-08-09T00:00:00.000Z",
@@ -1648,6 +1648,15 @@
       "employeeId": "u1786699324044",
       "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
       "sentAt": "2026-08-14T09:23:07.914Z",
+      "sentBy": "u6",
+      "progressPercent": 0,
+      "read": false
+    },
+    {
+      "id": "rm_1786699400513",
+      "employeeId": "u1786699324044",
+      "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:23:20.513Z",
       "sentBy": "u6",
       "progressPercent": 0,
       "read": false
