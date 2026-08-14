@@ -1,5 +1,5 @@
 /* Service Worker — 试用期学习管理系统 PWA */
-const CACHE_NAME = "probation-v1";
+const CACHE_NAME = "probation-v2";
 const ASSETS = [
   "/",
   "/index.html",
@@ -49,5 +49,46 @@ self.addEventListener("fetch", (event) => {
         /* 网络失败，从缓存读取 */
         return caches.match(event.request);
       })
+  );
+});
+
+/* ===== Web Push：接收推送消息 ===== */
+self.addEventListener("push", (event) => {
+  let data = { title: "学习提醒", body: "您有一条新通知" };
+  try {
+    if (event.data) data = JSON.parse(event.data.text());
+  } catch (e) {
+    if (event.data) data.body = event.data.text();
+  }
+
+  const options = {
+    body: data.body,
+    icon: data.icon || "/icon-192.png",
+    badge: data.badge || "/icon-192.png",
+    tag: data.tag || "reminder",
+    data: data.data || {},
+    requireInteraction: true,
+    vibrate: [200, 100, 200],
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title || "学习提醒", options)
+  );
+});
+
+/* ===== 通知点击：打开应用 ===== */
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const targetUrl = (event.notification.data && event.notification.data.url) || "/";
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientList) => {
+      // 如果已有打开的窗口，聚焦它
+      for (const client of clientList) {
+        if ("focus" in client) return client.focus();
+      }
+      // 否则打开新窗口
+      if (clients.openWindow) return clients.openWindow(targetUrl);
+    })
   );
 });
