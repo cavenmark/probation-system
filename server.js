@@ -135,6 +135,90 @@ let appData = null;
 const tokens = new Map();   // token -> userId
 let sseClients = [];        // SSE 连接列表
 
+/* ===== GitHub 数据持久化 ===== */
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || "";
+const GITHUB_REPO = "cavenmark/probation-system";
+const GITHUB_BRANCH = "main";
+const GITHUB_DATA_PATH = "data.json";
+let githubDataSha = null;
+let githubSaveTimeout = null;
+
+async function loadFromGitHub() {
+  if (!GITHUB_TOKEN) return null;
+  try {
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_DATA_PATH}?ref=${GITHUB_BRANCH}`;
+    const resp = await fetch(url, {
+      headers: {
+        "Authorization": `token ${GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "probation-system",
+      },
+    });
+    if (!resp.ok) {
+      console.log(`[GitHub] 远程数据不存在或无法访问 (${resp.status})`);
+      return null;
+    }
+    const data = await resp.json();
+    const content = Buffer.from(data.content, "base64").toString("utf-8");
+    const parsed = JSON.parse(content);
+    if (parsed && parsed.users && parsed.plan) {
+      console.log(`[GitHub] 数据加载成功（${parsed.users.length} 用户，${parsed.records.length} 记录）`);
+      githubDataSha = data.sha;
+      return parsed;
+    }
+  } catch (e) {
+    console.error("[GitHub] 加载失败:", e.message);
+  }
+  return null;
+}
+
+async function saveToGitHub() {
+  if (!GITHUB_TOKEN) return;
+  try {
+    const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_DATA_PATH}`;
+    const content = Buffer.from(JSON.stringify(appData, null, 2)).toString("base64");
+    const body = JSON.stringify({
+      message: "auto: sync data",
+      content: content,
+      branch: GITHUB_BRANCH,
+      ...(githubDataSha ? { sha: githubDataSha } : {}),
+    });
+    const resp = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Authorization": `token ${GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json",
+        "User-Agent": "probation-system",
+      },
+      body: body,
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      githubDataSha = data.content.sha;
+      console.log("[GitHub] 数据同步成功");
+    } else {
+      const errText = await resp.text();
+      console.error(`[GitHub] 保存失败 (${resp.status}):`, errText.slice(0, 200));
+      if (resp.status === 409 || resp.status === 422) {
+        const reloaded = await loadFromGitHub();
+        if (reloaded) { appData = reloaded; }
+      }
+    }
+  } catch (e) {
+    console.error("[GitHub] 保存错误:", e.message);
+  }
+}
+
+function debouncedSaveToGitHub() {
+  if (!GITHUB_TOKEN) return;
+  if (githubSaveTimeout) clearTimeout(githubSaveTimeout);
+  githubSaveTimeout = setTimeout(() => {
+    saveToGitHub().catch(() => {});
+  }, 3000);
+}
+
 /* ===== 工具函数 ===== */
 
 function saveDataFile() {
@@ -143,6 +227,7 @@ function saveDataFile() {
   } catch (e) {
     console.error("Failed to save data file:", e.message);
   }
+  debouncedSaveToGitHub();
 }
 
 function loadDataFile() {
@@ -340,22 +425,34 @@ const server = http.createServer(async (req, res) => {
 
 /* ===== 初始化 ===== */
 
-function init() {
-  const fileData = loadDataFile();
-  if (fileData && fileData.users && fileData.plan) {
-    appData = fileData;
-    console.log(`[数据] 从 data.json 加载成功（${appData.users.length} 用户，${appData.plan.length} 课程，${appData.records.length} 记录）`);
+async function start() {
+  // 1. 优先从 GitHub 加载（跨部署持久化）
+  const githubData = await loadFromGitHub();
+  if (githubData) {
+    appData = githubData;
+    saveDataFile(); // 同步到本地
+    console.log("[数据] 从 GitHub 加载成功");
   } else {
-    appData = initSampleData();
-    saveDataFile();
-    console.log("[数据] 初始化样本数据完成");
+    // 2. 尝试从本地文件加载
+    const fileData = loadDataFile();
+    if (fileData && fileData.users && fileData.plan) {
+      appData = fileData;
+      console.log(`[数据] 从 data.json 加载成功（${appData.users.length} 用户，${appData.plan.length} 课程，${appData.records.length} 记录）`);
+    } else {
+      // 3. 初始化样本数据
+      appData = initSampleData();
+      saveDataFile();
+      console.log("[数据] 初始化样本数据完成");
+    }
   }
+
+  server.listen(PORT, () => {
+    console.log(`\n========================================`);
+    console.log(`  试用期员工学习管理系统`);
+    console.log(`  服务地址: http://localhost:${PORT}`);
+    console.log(`  GitHub持久化: ${GITHUB_TOKEN ? "已启用" : "未启用"}`);
+    console.log(`========================================\n`);
+  });
 }
 
-init();
-server.listen(PORT, () => {
-  console.log(`\n========================================`);
-  console.log(`  试用期员工学习管理系统`);
-  console.log(`  服务地址: http://localhost:${PORT}`);
-  console.log(`========================================\n`);
-});
+start();
