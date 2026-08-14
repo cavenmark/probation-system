@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>试用期员工学习管理系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- ===== 登录/角色选择页 ===== -->
+    <div id="login-view" class="view">
+      <div class="login-card">
+        <div class="login-logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="#2563eb"/>
+            <path d="M24 12L34 18V30L24 36L14 30V18L24 12Z" stroke="white" stroke-width="2.5" fill="none"/>
+            <circle cx="24" cy="24" r="4" fill="white"/>
+          </svg>
+        </div>
+        <h1 class="login-title">试用期员工学习管理系统</h1>
+        <p class="login-subtitle">选择角色登录体验系统功能</p>
+        <div class="role-cards" id="role-cards">
+          <div class="role-card" data-role="employee">
+            <div class="role-icon role-icon-employee">👤</div>
+            <div class="role-name">新员工</div>
+            <div class="role-desc">查看每日学习任务<br>记录学习时长与总结</div>
+          </div>
+          <div class="role-card" data-role="mentor">
+            <div class="role-icon role-icon-mentor">🧑‍🏫</div>
+            <div class="role-name">带教老师</div>
+            <div class="role-desc">审核学员学习总结<br>确认学习完成情况</div>
+          </div>
+          <div class="role-card" data-role="hr">
+            <div class="role-icon role-icon-hr">📊</div>
+            <div class="role-name">人力资源</div>
+            <div class="role-desc">监控全员学习进度<br>催促落后员工</div>
+          </div>
+        </div>
+        <div class="user-list hidden" id="user-list"></div>
+        <p class="login-footer">顾家家居 · 人才发展中心</p>
+      </div>
+    </div>
+
+    <!-- ===== 主应用 ===== -->
+    <div id="main-view" class="view hidden">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+            <rect width="48" height="48" rx="12" fill="#2563eb"/>
+            <path d="M24 12L34 18V30L24 36L14 30V18L24 12Z" stroke="white" stroke-width="2.5" fill="none"/>
+            <circle cx="24" cy="24" r="4" fill="white"/>
+          </svg>
+          <span>试用期学习管理系统</span>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-user" id="topbar-user"></div>
+          <button class="btn btn-ghost btn-sm" id="logout-btn">退出登录</button>
+        </div>
+      </header>
+      <div class="layout">
+        <nav class="sidebar" id="sidebar"></nav>
+        <main class="content" id="content"></main>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden"></div>
+  <div id="modal-box" class="modal-box hidden"></div>
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
