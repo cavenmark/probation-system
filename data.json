@@ -59,6 +59,17 @@
       "position": "HRBP",
       "avatarColor": "#dc2626",
       "loginToken": "gkjj_u6_2026"
+    },
+    {
+      "id": "u1786699043295",
+      "name": "迟翔中",
+      "role": "employee",
+      "dept": "搭",
+      "position": "按时",
+      "avatarColor": "#2563eb",
+      "loginToken": "lt_u1786699043295_hoodqmao",
+      "mentorId": "u4",
+      "joinDate": "2026-08-14"
     }
   ],
   "plan": [
@@ -890,7 +901,7 @@
       "status": "rejected",
       "actualDuration": 81,
       "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 沙发品类，重点掌握了沙发产品系列与定位。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了产品体系总览 — 沙发品类，重点掌握了沙发产品系列与定位。通过学习，我对产品知识有了更��入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-07-18T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-19T00:00:00.000Z",
@@ -1614,6 +1625,20 @@
       "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1786699043295_1",
+      "employeeId": "u1786699043295",
+      "day": 1,
+      "date": "2026-08-14",
+      "status": "pending",
+      "actualDuration": 0,
+      "requiredDuration": 60,
+      "summary": "",
+      "submittedAt": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
       "reviewComment": ""
     }
   ],
