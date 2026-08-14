@@ -1,6 +1,6 @@
 {
   "name": "probation-learning-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "试用期员工学习管理系统 - 顾家家居",
   "main": "server.js",
   "scripts": {
@@ -8,5 +8,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "web-push": "^3.6.7"
   }
 }
