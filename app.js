@@ -378,33 +378,38 @@ const Utils = {
   getTodayRecord(empId) {
     const emp = this.getUser(empId);
     if (!emp) return null;
+    const planLen = State.data.plan.length;
+    const records = this.getEmployeeRecords(empId);
+
+    // 优先返回仍在进行中的记录（pending / studying / rejected）
+    let active = records.find(r => r.status === "pending" || r.status === "studying" || r.status === "rejected");
+    if (active) return active;
+
+    // 所有已有记录都已提交或通过，找下一个未完成的天
+    const doneDays = new Set(records.filter(r => r.status === "submitted" || r.status === "approved").map(r => r.day));
+    let day = 1;
+    while (day <= planLen && doneDays.has(day)) day++;
+    if (day > planLen) return null; // 全部完成
+
+    // 为下一天创建新记录
+    const plan = State.data.plan[day - 1];
     const today = new Date().toISOString().split("T")[0];
-    let record = State.data.records.find(r => r.employeeId === empId && r.date === today);
-    if (!record) {
-      // 计算第几天
-      const joinDate = new Date(emp.joinDate);
-      const daysSinceJoin = Math.floor((new Date() - joinDate) / (1000 * 60 * 60 * 24)) + 1;
-      const planLen = State.data.plan.length;
-      const day = Math.min(daysSinceJoin, planLen);
-      if (day > planLen) return null;
-      const plan = State.data.plan[day - 1];
-      record = {
-        id: `lr_${empId}_${day}`,
-        employeeId: empId,
-        day: day,
-        date: today,
-        status: "pending",
-        actualDuration: 0,
-        requiredDuration: plan.duration,
-        summary: "",
-        submittedAt: null,
-        reviewedBy: null,
-        reviewedAt: null,
-        reviewComment: "",
-      };
-      State.data.records.push(record);
-      API.save(State.data);
-    }
+    const record = {
+      id: `lr_${empId}_${day}`,
+      employeeId: empId,
+      day: day,
+      date: today,
+      status: "pending",
+      actualDuration: 0,
+      requiredDuration: plan.duration,
+      summary: "",
+      submittedAt: null,
+      reviewedBy: null,
+      reviewedAt: null,
+      reviewComment: "",
+    };
+    State.data.records.push(record);
+    API.save(State.data);
     return record;
   },
   getMentees(mentorId) {
@@ -484,7 +489,7 @@ const Views = {
     const role = State.currentUser.role;
     const items = {
       employee: [
-        { id: "today", icon: "📋", label: "今日任务" },
+        { id: "today", icon: "📖", label: "学习计划" },
         { id: "history", icon: "📚", label: "学习记录" },
       ],
       mentor: [
@@ -515,22 +520,15 @@ const Views = {
     document.getElementById("sidebar").innerHTML = html;
   },
 
-  /* ----- 新员工：今日任务 ----- */
+  /* ----- 新员工：学习计划（全部天数） ----- */
   employeeToday() {
     const emp = State.currentUser;
-    const record = Utils.getTodayRecord(emp.id);
-    if (!record) {
-      document.getElementById("content").innerHTML = `
-        <div class="page-title">今日学习任务</div>
-        <div class="empty-state">
-          <div class="empty-icon">🎉</div>
-          <div class="empty-text">恭喜！您已完成全部学习计划，无需新增任务。</div>
-        </div>`;
-      return;
-    }
-    const plan = State.data.plan[record.day - 1];
+    const allRecords = Utils.getEmployeeRecords(emp.id);
+    const activeRecord = Utils.getTodayRecord(emp.id);
+    const progress = Utils.getEmployeeProgress(emp.id);
+    const planLen = State.data.plan.length;
 
-    // 检查是否有催促通知
+    // 催促通知
     const reminders = State.data.reminders.filter(r => r.employeeId === emp.id && !r.read);
     let reminderHtml = "";
     if (reminders.length > 0) {
@@ -540,119 +538,236 @@ const Views = {
           <span><strong>HR催促通知：</strong>${r.message} <span style="color:var(--c-text-muted);margin-left:8px;">${Utils.formatDateTime(r.sentAt)}</span></span>
         </div>
       `).join("");
-      // 标记已读
       reminders.forEach(r => r.read = true);
       API.save(State.data);
     }
 
-    const isCompleted = record.status === "submitted" || record.status === "approved" || record.status === "rejected";
-    const canSubmit = State.timer.seconds > 0 || record.actualDuration > 0;
-
-    let timerHtml = "";
-    if (!isCompleted) {
-      const requiredSec = record.requiredDuration * 60;
-      const currentSec = record.actualDuration > 0 ? record.actualDuration * 60 : State.timer.seconds;
-      const percent = Math.min(100, (currentSec / requiredSec) * 100);
-      const metRequired = currentSec >= requiredSec;
-      timerHtml = `
-        <div class="timer-card">
-          <div>
-            <div class="timer-label">学习计时（要求：${Utils.formatDuration(record.requiredDuration)}）</div>
-            <div class="timer-display" id="timer-display">${Utils.formatSeconds(currentSec)}</div>
-            <div class="timer-progress" style="width:200px;margin-top:8px;">
-              <div class="progress-bar"><div class="progress-fill ${metRequired ? 'success' : 'primary'}" style="width:${percent}%"></div></div>
+    // 进度概览
+    const st = Utils.getProgressStatus(progress);
+    const progressHtml = `
+      <div class="card" style="margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:24px;">
+          <div style="flex:1;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <span style="font-size:14px;font-weight:600;">总体进度</span>
+              <span style="font-size:14px;font-weight:600;">${progress.completed}/${planLen} 天 (${progress.percent}%)</span>
             </div>
+            <div class="progress-bar"><div class="progress-fill ${st.cls}" style="width:${progress.percent}%"></div></div>
           </div>
-          <div class="timer-controls">
-            <button class="timer-btn" id="timer-start" onclick="Timer.toggle()" ${State.timer.running ? 'style="display:none"' : ''}>▶</button>
-            <button class="timer-btn" id="timer-pause" onclick="Timer.toggle()" ${!State.timer.running ? 'style="display:none"' : ''}>⏸</button>
-            <button class="timer-btn" onclick="Timer.stop()" title="结束计时">⏹</button>
+          <div style="display:flex;gap:16px;">
+            <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--c-success);">${progress.completed}</div><div style="font-size:12px;color:var(--c-text-secondary);">已通过</div></div>
+            <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--c-warning);">${progress.submitted}</div><div style="font-size:12px;color:var(--c-text-secondary);">待审核</div></div>
+            <div style="text-align:center;"><div style="font-size:20px;font-weight:700;color:var(--c-danger);">${progress.rejected}</div><div style="font-size:12px;color:var(--c-text-secondary);">已驳回</div></div>
           </div>
         </div>
+      </div>
+    `;
+
+    // 全部完成
+    if (!activeRecord) {
+      document.getElementById("content").innerHTML = `
+        ${reminderHtml}
+        <div class="page-title">学习计划</div>
+        <div class="page-desc">共${planLen}天课程，已全部完成！🎉</div>
+        ${progressHtml}
+        <div class="empty-state">
+          <div class="empty-icon">🎉</div>
+          <div class="empty-text">恭喜！您已完成全部学习计划！</div>
+        </div>
       `;
+      return;
     }
 
-    let summaryHtml = "";
-    if (!isCompleted) {
-      summaryHtml = `
-        <div class="card">
-          <div class="card-title" style="margin-bottom:16px;">📝 学习总结</div>
-          <div class="form-group">
-            <label class="form-label">请撰写今日学习总结 <span class="required">*</span></label>
-            <textarea class="form-textarea" id="summary-input" placeholder="请总结今天的学习收获、重点理解及实际应用计划（不少于100字）...">${record.summary || ""}</textarea>
+    // 构建全部天数列表
+    let daysHtml = "";
+    for (let day = 1; day <= planLen; day++) {
+      const plan = State.data.plan[day - 1];
+      const record = allRecords.find(r => r.day === day);
+      const isActive = activeRecord.day === day;
+
+      if (isActive) {
+        // === 当前学习天：展开显示完整内容 + 计时 + 总结 ===
+        const isCompleted = record.status === "submitted" || record.status === "approved";
+        const isRejected = record.status === "rejected";
+
+        let timerHtml = "";
+        if (!isCompleted) {
+          const requiredSec = record.requiredDuration * 60;
+          const currentSec = record.actualDuration > 0 ? record.actualDuration * 60 : State.timer.seconds;
+          const percent = Math.min(100, (currentSec / requiredSec) * 100);
+          const metRequired = currentSec >= requiredSec;
+          timerHtml = `
+            <div class="timer-card">
+              <div>
+                <div class="timer-label">学习计时（要求：${Utils.formatDuration(record.requiredDuration)}）</div>
+                <div class="timer-display" id="timer-display">${Utils.formatSeconds(currentSec)}</div>
+                <div class="timer-progress" style="width:200px;margin-top:8px;">
+                  <div class="progress-bar"><div class="progress-fill ${metRequired ? 'success' : 'primary'}" style="width:${percent}%"></div></div>
+                </div>
+              </div>
+              <div class="timer-controls">
+                <button class="timer-btn" id="timer-start" onclick="Timer.toggle()" ${State.timer.running ? 'style="display:none"' : ''}>▶</button>
+                <button class="timer-btn" id="timer-pause" onclick="Timer.toggle()" ${!State.timer.running ? 'style="display:none"' : ''}>⏸</button>
+                <button class="timer-btn" onclick="Timer.stop()" title="结束计时">⏹</button>
+              </div>
+            </div>
+          `;
+        }
+
+        let summaryHtml = "";
+        if (isRejected) {
+          summaryHtml = `
+            <div style="margin-top:16px;border-top:1px solid var(--c-border);padding-top:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span class="badge badge-danger">❌ 已驳回</span>
+                <span style="font-size:13px;color:var(--c-text-secondary);">带教老师 ${Utils.getUser(record.reviewedBy)?.name || "—"} 要求重新提交</span>
+              </div>
+              ${record.reviewComment ? `<div style="background:var(--c-danger-light);padding:12px;border-radius:6px;font-size:13px;margin-bottom:12px;"><strong>驳回原因：</strong>${record.reviewComment}</div>` : ""}
+              <div class="form-group">
+                <label class="form-label">请修改学习总结后重新提交</label>
+                <textarea class="form-textarea" id="summary-input" placeholder="请修改学习总结...">${record.summary || ""}</textarea>
+              </div>
+              <div style="text-align:right;">
+                <button class="btn btn-primary" onclick="Actions.resubmitSummary()">重新提交</button>
+              </div>
+            </div>
+          `;
+        } else if (!isCompleted) {
+          summaryHtml = `
+            <div style="margin-top:16px;border-top:1px solid var(--c-border);padding-top:16px;">
+              <div class="card-title" style="margin-bottom:12px;">📝 学习总结</div>
+              <div class="form-group">
+                <label class="form-label">请撰写学习总结 <span class="required">*</span></label>
+                <textarea class="form-textarea" id="summary-input" placeholder="请总结今天的学习收获、重点理解及实际应用计划（不少于${State.data.settings.minSummaryWords}字）...">${record.summary || ""}</textarea>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:12px;color:var(--c-text-muted);">提示：学习时长需达到${Utils.formatDuration(record.requiredDuration)}方可提交</span>
+                <button class="btn btn-primary" id="submit-btn" onclick="Actions.submitSummary()">提交给带教老师审核</button>
+              </div>
+            </div>
+          `;
+        } else if (record.status === "submitted") {
+          summaryHtml = `
+            <div style="margin-top:16px;border-top:1px solid var(--c-border);padding-top:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span class="badge badge-warning">⏳ 待审核</span>
+                <span style="font-size:13px;color:var(--c-text-secondary);">已提交至带教老师 ${Utils.getUser(emp.mentorId)?.name || "—"}，等待审核确认</span>
+              </div>
+              <div style="font-size:13px;color:var(--c-text-secondary);margin-bottom:8px;">提交时间：${Utils.formatDateTime(record.submittedAt)}</div>
+              <div style="background:var(--c-bg);padding:12px;border-radius:6px;font-size:13px;line-height:1.6;">${record.summary}</div>
+            </div>
+          `;
+        } else if (record.status === "approved") {
+          summaryHtml = `
+            <div style="margin-top:16px;border-top:1px solid var(--c-border);padding-top:16px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                <span class="badge badge-success">✅ 审核通过</span>
+                <span style="font-size:13px;color:var(--c-text-secondary);">带教老师 ${Utils.getUser(record.reviewedBy)?.name || "—"} 已确认</span>
+              </div>
+              <div style="font-size:13px;color:var(--c-text-secondary);margin-bottom:8px;">审核时间：${Utils.formatDateTime(record.reviewedAt)}</div>
+              ${record.reviewComment ? `<div style="background:var(--c-success-light);padding:12px;border-radius:6px;font-size:13px;margin-bottom:12px;"><strong>审核评语：</strong>${record.reviewComment}</div>` : ""}
+              <div style="background:var(--c-bg);padding:12px;border-radius:6px;font-size:13px;line-height:1.6;">${record.summary}</div>
+            </div>
+          `;
+        }
+
+        daysHtml += `
+          <div class="task-card" id="day-${day}" style="border-left-color:var(--c-primary);box-shadow:0 0 0 2px var(--c-primary-light),var(--shadow);">
+            <div class="task-header">
+              <div class="task-day" style="background:var(--c-primary);color:#fff;">D${day}</div>
+              <div style="flex:1;">
+                <div class="task-title">${plan.title}</div>
+                <div class="task-meta">
+                  <span>📂 ${plan.category}</span>
+                  <span>⏱ 要求学习时长：${Utils.formatDuration(plan.duration)}</span>
+                  <span>${Utils.statusBadge(record.status)}</span>
+                </div>
+              </div>
+              <span class="badge badge-primary">📍 当前学习</span>
+            </div>
+            <div class="task-content">${plan.content}</div>
+            <ul class="task-points">
+              ${plan.points.map(p => `<li>${p}</li>`).join("")}
+            </ul>
+            ${timerHtml}
+            ${summaryHtml}
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:12px;color:var(--c-text-muted);">提示：学习时长需达到${Utils.formatDuration(record.requiredDuration)}方可提交</span>
-            <button class="btn btn-primary" id="submit-btn" onclick="Actions.submitSummary()">提交给带教老师审核</button>
+        `;
+      } else if (record && record.status === "approved") {
+        // === 已通过天：折叠显示 ===
+        daysHtml += `
+          <div class="plan-day-item completed" id="day-${day}">
+            <div class="plan-day-num done">D${day}</div>
+            <div class="plan-day-body">
+              <div class="plan-day-title">${plan.title}</div>
+              <div class="plan-day-sub">
+                <span>📂 ${plan.category}</span>
+                <span>⏱ ${Utils.formatDuration(record.actualDuration)}</span>
+                <span class="badge badge-success">✅ 已通过</span>
+              </div>
+            </div>
           </div>
-        </div>
-      `;
-    } else if (record.status === "submitted") {
-      summaryHtml = `
-        <div class="card" style="border-left:4px solid var(--c-warning);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <span class="badge badge-warning">⏳ 待审核</span>
-            <span style="font-size:13px;color:var(--c-text-secondary);">已提交至带教老师 ${Utils.getUser(emp.mentorId)?.name || "—"}，等待审核确认</span>
+        `;
+      } else if (record && record.status === "submitted") {
+        // === 已提交待审核 ===
+        daysHtml += `
+          <div class="plan-day-item submitted" id="day-${day}">
+            <div class="plan-day-num waiting">D${day}</div>
+            <div class="plan-day-body">
+              <div class="plan-day-title">${plan.title}</div>
+              <div class="plan-day-sub">
+                <span>📂 ${plan.category}</span>
+                <span>⏱ ${Utils.formatDuration(record.actualDuration)}</span>
+                <span class="badge badge-warning">⏳ 待审核</span>
+              </div>
+            </div>
           </div>
-          <div style="font-size:13px;color:var(--c-text-secondary);margin-bottom:8px;">提交时间：${Utils.formatDateTime(record.submittedAt)}</div>
-          <div style="background:var(--c-bg);padding:12px;border-radius:6px;font-size:13px;line-height:1.6;">${record.summary}</div>
-        </div>
-      `;
-    } else if (record.status === "approved") {
-      summaryHtml = `
-        <div class="card" style="border-left:4px solid var(--c-success);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <span class="badge badge-success">✅ 审核通过</span>
-            <span style="font-size:13px;color:var(--c-text-secondary);">带教老师 ${Utils.getUser(record.reviewedBy)?.name || "—"} 已确认</span>
+        `;
+      } else if (record && record.status === "rejected") {
+        // === 已驳回（非当前天，理论上不应出现） ===
+        daysHtml += `
+          <div class="plan-day-item rejected" id="day-${day}">
+            <div class="plan-day-num rejected">D${day}</div>
+            <div class="plan-day-body">
+              <div class="plan-day-title">${plan.title}</div>
+              <div class="plan-day-sub">
+                <span>📂 ${plan.category}</span>
+                <span class="badge badge-danger">❌ 需重新提交</span>
+              </div>
+            </div>
           </div>
-          <div style="font-size:13px;color:var(--c-text-secondary);margin-bottom:8px;">审核时间：${Utils.formatDateTime(record.reviewedAt)}</div>
-          ${record.reviewComment ? `<div style="background:var(--c-success-light);padding:12px;border-radius:6px;font-size:13px;margin-bottom:12px;"><strong>审核评语：</strong>${record.reviewComment}</div>` : ""}
-          <div style="background:var(--c-bg);padding:12px;border-radius:6px;font-size:13px;line-height:1.6;">${record.summary}</div>
-        </div>
-      `;
-    } else if (record.status === "rejected") {
-      summaryHtml = `
-        <div class="card" style="border-left:4px solid var(--c-danger);">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <span class="badge badge-danger">❌ 已驳回</span>
-            <span style="font-size:13px;color:var(--c-text-secondary);">带教老师 ${Utils.getUser(record.reviewedBy)?.name || "—"} 要求重新提交</span>
+        `;
+      } else {
+        // === 未来天：未开始 ===
+        daysHtml += `
+          <div class="plan-day-item future" id="day-${day}">
+            <div class="plan-day-num future">D${day}</div>
+            <div class="plan-day-body">
+              <div class="plan-day-title">${plan.title}</div>
+              <div class="plan-day-sub">
+                <span>📂 ${plan.category}</span>
+                <span>⏱ ${Utils.formatDuration(plan.duration)}</span>
+                <span class="badge badge-gray">🔒 未开始</span>
+              </div>
+            </div>
           </div>
-          ${record.reviewComment ? `<div style="background:var(--c-danger-light);padding:12px;border-radius:6px;font-size:13px;margin-bottom:12px;"><strong>驳回原因：</strong>${record.reviewComment}</div>` : ""}
-          <div class="form-group">
-            <label class="form-label">请修改学习总结后重新提交</label>
-            <textarea class="form-textarea" id="summary-input" placeholder="请修改学习总结...">${record.summary || ""}</textarea>
-          </div>
-          <div style="text-align:right;">
-            <button class="btn btn-primary" onclick="Actions.resubmitSummary()">重新提交</button>
-          </div>
-        </div>
-      `;
+        `;
+      }
     }
 
     document.getElementById("content").innerHTML = `
       ${reminderHtml}
-      <div class="page-title">今日学习任务</div>
-      <div class="page-desc">${emp.name}，今天是您入职第 ${record.day} 天，加油！💪</div>
-      <div class="task-card">
-        <div class="task-header">
-          <div class="task-day">D${record.day}</div>
-          <div>
-            <div class="task-title">${plan.title}</div>
-            <div class="task-meta">
-              <span>📂 ${plan.category}</span>
-              <span>⏱ 要求学习时长：${Utils.formatDuration(plan.duration)}</span>
-              <span>${Utils.statusBadge(record.status)}</span>
-            </div>
-          </div>
-        </div>
-        <div class="task-content">${plan.content}</div>
-        <ul class="task-points">
-          ${plan.points.map(p => `<li>${p}</li>`).join("")}
-        </ul>
-      </div>
-      ${timerHtml}
-      ${summaryHtml}
+      <div class="page-title">学习计划</div>
+      <div class="page-desc">${emp.name}，按顺序学习，完成当天总结提交后自动进入下一天 💪</div>
+      ${progressHtml}
+      ${daysHtml}
     `;
+
+    // 自动滚动到当前学习天
+    setTimeout(() => {
+      const el = document.getElementById(`day-${activeRecord.day}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 100);
   },
 
   /* ----- 新员工：学习记录 ----- */
@@ -1309,7 +1424,8 @@ const Actions = {
     record.status = "submitted";
     record.submittedAt = new Date().toISOString();
     API.save(State.data);
-    toast("学习总结已提交给带教老师！", "success");
+    const hasNext = record.day < State.data.plan.length;
+    toast(hasNext ? "已提交！自动进入下一天学习" : "已提交！全部课程已完成", "success");
     Views.employeeToday();
     Views.renderSidebar();
   },
