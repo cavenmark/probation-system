@@ -503,7 +503,7 @@
       "submittedAt": "2026-07-19T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-20T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油�����"
+      "reviewComment": "总结认真，理解到位，继续加油�������"
     },
     {
       "id": "lr_u1_6",
@@ -541,7 +541,7 @@
       "status": "approved",
       "actualDuration": 61,
       "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店�����营���了���深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店�������营���了���深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-07-22T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-23T00:00:00.000Z",
@@ -821,7 +821,7 @@
       "status": "rejected",
       "actualDuration": 109,
       "requiredDuration": 90,
-      "summary": "今日学习了试用期总结撰写，重点掌握了学习成果回顾与梳理。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了试用期总结撰写，重点掌握了学习成果回顾与梳理。通过学习，我对考核评估有了更深入���理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-08-11T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-08-12T00:00:00.000Z",
@@ -863,7 +863,7 @@
       "submittedAt": "2026-07-15T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-16T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总结认��，理解到位，继续加油！"
     },
     {
       "id": "lr_u2_2",
@@ -933,7 +933,7 @@
       "submittedAt": "2026-07-20T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-21T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "���结认真，理解到位，继续加油！"
     },
     {
       "id": "lr_u2_7",
@@ -1111,7 +1111,7 @@
       "status": "rejected",
       "actualDuration": 40,
       "requiredDuration": 45,
-      "summary": "今日学习了团队协作与门店会议，重点掌握了门店团队角色分工。通过学习，我对综合素养有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了团队协作与门店会议，重点掌握了门店团队角色分工。通过学习，我对综合素养有了更深���的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-08-02T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-08-03T00:00:00.000Z",
@@ -1293,7 +1293,7 @@
       "submittedAt": "2026-07-21T00:00:00.000Z",
       "reviewedBy": "u5",
       "reviewedAt": "2026-07-22T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总��认真，理解到位，继续加油！"
     },
     {
       "id": "lr_u3_3",
@@ -1363,7 +1363,7 @@
       "submittedAt": "2026-07-26T00:00:00.000Z",
       "reviewedBy": "u5",
       "reviewedAt": "2026-07-27T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总结认真���理解到位，继续加油！"
     },
     {
       "id": "lr_u3_8",
@@ -1635,6 +1635,20 @@
       "status": "studying",
       "actualDuration": 0,
       "requiredDuration": 60,
+      "summary": "",
+      "submittedAt": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1_30",
+      "employeeId": "u1",
+      "day": 30,
+      "date": "2026-08-14",
+      "status": "pending",
+      "actualDuration": 0,
+      "requiredDuration": 120,
       "summary": "",
       "submittedAt": null,
       "reviewedBy": null,
