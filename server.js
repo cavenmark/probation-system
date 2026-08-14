@@ -178,10 +178,15 @@ function sendJSON(res, status, obj) {
 
 function serveStatic(pathname, res) {
   const routes = {
-    "/":            { file: "index.html", type: "text/html; charset=utf-8" },
-    "/index.html":  { file: "index.html", type: "text/html; charset=utf-8" },
-    "/styles.css":  { file: "styles.css", type: "text/css; charset=utf-8" },
-    "/app.js":      { file: "app.js",      type: "application/javascript; charset=utf-8" },
+    "/":                  { file: "index.html",        type: "text/html; charset=utf-8" },
+    "/index.html":        { file: "index.html",        type: "text/html; charset=utf-8" },
+    "/styles.css":        { file: "styles.css",        type: "text/css; charset=utf-8" },
+    "/app.js":            { file: "app.js",            type: "application/javascript; charset=utf-8" },
+    "/manifest.json":     { file: "manifest.json",     type: "application/manifest+json; charset=utf-8" },
+    "/sw.js":             { file: "sw.js",             type: "application/javascript; charset=utf-8" },
+    "/icon-192.png":      { file: "icon-192.png",      type: "image/png" },
+    "/icon-512.png":      { file: "icon-512.png",      type: "image/png" },
+    "/apple-touch-icon.png": { file: "apple-touch-icon.png", type: "image/png" },
   };
   const route = routes[pathname];
   if (!route) return false;
