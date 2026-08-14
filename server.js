@@ -202,8 +202,46 @@ async function saveToGitHub() {
       const errText = await resp.text();
       console.error(`[GitHub] 保存失败 (${resp.status}):`, errText.slice(0, 200));
       if (resp.status === 409 || resp.status === 422) {
-        const reloaded = await loadFromGitHub();
-        if (reloaded) { appData = reloaded; }
+        // SHA 冲突：只更新 SHA，不覆盖 appData（保护本地新数据）
+        try {
+          const url2 = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_DATA_PATH}?ref=${GITHUB_BRANCH}`;
+          const resp2 = await fetch(url2, {
+            headers: {
+              "Authorization": `token ${GITHUB_TOKEN}`,
+              "Accept": "application/vnd.github+json",
+              "User-Agent": "probation-system",
+            },
+          });
+          if (resp2.ok) {
+            const d = await resp2.json();
+            githubDataSha = d.sha;
+            console.log("[GitHub] SHA 已更新，重试保存...");
+            // 用新 SHA 重试一次
+            const retryBody = JSON.stringify({
+              message: "auto: sync data (retry)",
+              content: Buffer.from(JSON.stringify(appData, null, 2)).toString("base64"),
+              branch: GITHUB_BRANCH,
+              sha: githubDataSha,
+            });
+            const retryResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_DATA_PATH}`, {
+              method: "PUT",
+              headers: {
+                "Authorization": `token ${GITHUB_TOKEN}`,
+                "Accept": "application/vnd.github+json",
+                "Content-Type": "application/json",
+                "User-Agent": "probation-system",
+              },
+              body: retryBody,
+            });
+            if (retryResp.ok) {
+              const retryData = await retryResp.json();
+              githubDataSha = retryData.content.sha;
+              console.log("[GitHub] 重试保存成功");
+            }
+          }
+        } catch (e2) {
+          console.error("[GitHub] 重试失败:", e2.message);
+        }
       }
     }
   } catch (e) {
