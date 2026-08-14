@@ -2237,6 +2237,96 @@ function showLoginPage() {
   if (hrInput) hrInput.value = "";
 }
 
+/* ----- 内置扫码器 ----- */
+let _scannerStream = null;
+let _scannerRAF = null;
+
+function setupScanner() {
+  const scanBtn = document.getElementById("scan-btn");
+  const closeBtn = document.getElementById("scanner-close");
+
+  if (scanBtn) {
+    scanBtn.addEventListener("click", startScanner);
+  }
+  if (closeBtn) {
+    closeBtn.addEventListener("click", stopScanner);
+  }
+}
+
+async function startScanner() {
+  const overlay = document.getElementById("scanner-overlay");
+  const video = document.getElementById("scanner-video");
+  const canvas = document.getElementById("scanner-canvas");
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+  try {
+    _scannerStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" }
+    });
+    video.srcObject = _scannerStream;
+    overlay.classList.remove("hidden");
+  } catch (e) {
+    toast("无法访问摄像头，请用微信扫码登录", "danger");
+    return;
+  }
+
+  // 扫码循环
+  function scan() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: "dontInvert",
+      });
+
+      if (code && code.data) {
+        // 解析二维码内容，提取 token
+        let token = null;
+        try {
+          const scannedUrl = new URL(code.data);
+          token = scannedUrl.searchParams.get("t");
+        } catch {
+          // 可能直接是 token 字符串
+          token = code.data.trim();
+        }
+
+        if (token) {
+          stopScanner();
+          doQrLogin(token);
+          return;
+        }
+      }
+    }
+    _scannerRAF = requestAnimationFrame(scan);
+  }
+  scan();
+}
+
+function stopScanner() {
+  if (_scannerStream) {
+    _scannerStream.getTracks().forEach(t => t.stop());
+    _scannerStream = null;
+  }
+  if (_scannerRAF) {
+    cancelAnimationFrame(_scannerRAF);
+    _scannerRAF = null;
+  }
+  document.getElementById("scanner-overlay").classList.add("hidden");
+}
+
+async function doQrLogin(token) {
+  try {
+    const result = await API.qrLogin(token);
+    enterMainView(result.user);
+    toast(`登录成功，欢迎 ${result.user.name}！`, "success");
+  } catch (e) {
+    toast("二维码无效或已失效，请联系HR", "danger");
+  }
+}
+
+/* ----- HR 管理员登录 ----- */
 function setupHRLogin() {
   const toggle = document.getElementById("hr-login-toggle");
   const form = document.getElementById("hr-login-form");
@@ -2254,10 +2344,12 @@ function setupHRLogin() {
       const name = input.value.trim();
       if (!name) { toast("请输入姓名", "danger"); return; }
       try {
-        await API.login(name);
-        const user = State.data.users.find(u => u.name === name);
-        if (user) {
-          enterMainView(user);
+        const result = await API.login(name);
+        if (result.user) {
+          enterMainView(result.user);
+        } else {
+          const user = State.data.users.find(u => u.name === name);
+          if (user) enterMainView(user);
         }
       } catch (e) {
         toast("登录失败，请检查姓名是否正确", "danger");
@@ -2341,6 +2433,8 @@ async function init() {
 
   // 设置 HR 登录表单
   setupHRLogin();
+  // 设置内置扫码器
+  setupScanner();
 
   // 退出登录按钮
   document.getElementById("logout-btn").addEventListener("click", logout);
