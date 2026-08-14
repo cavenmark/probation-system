@@ -108,10 +108,10 @@ function initSampleData() {
     }
   });
 
-  // 为每个用户生成唯一扫码登录令牌
+  // 为每个用户生成固定登录令牌（基于用户ID，重启后不变）
   const users = JSON.parse(JSON.stringify(SAMPLE_USERS)).map(u => ({
     ...u,
-    loginToken: crypto.randomUUID(),
+    loginToken: "gkjj_" + u.id + "_2026",
   }));
 
   return {
