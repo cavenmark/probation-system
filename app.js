@@ -1524,23 +1524,54 @@ const Actions = {
     );
   },
 
-  doSendReminder(empId) {
+  async doSendReminder(empId) {
     const emp = Utils.getUser(empId);
-    const progress = Utils.getEmployeeProgress(empId);
     const message = document.getElementById("reminder-message").value.trim() || "请尽快完成学习任务";
 
-    State.data.reminders.push({
-      id: "rm_" + Date.now(),
-      employeeId: empId,
-      message: message,
-      sentAt: new Date().toISOString(),
-      sentBy: State.currentUser.id,
-      progressPercent: progress.percent,
-      read: false,
-    });
-    API.save(State.data);
     Modal.close();
-    toast(`已向 ${emp.name} 发送催促通知`, "success");
+    toast(`正在向 ${emp.name} 发送催促...`, "info");
+
+    try {
+      const res = await fetch("/api/remind", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + API.token },
+        body: JSON.stringify({ employeeId: empId, message }),
+      });
+
+      if (res.status === 401 && State.currentUser) {
+        // token 失效，自动重新登录
+        if (State.currentUser.loginToken) {
+          await API.qrLogin(State.currentUser.loginToken);
+        } else {
+          await API.login(State.currentUser.name);
+        }
+        // 重试
+        const retryRes = await fetch("/api/remind", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: "Bearer " + API.token },
+          body: JSON.stringify({ employeeId: empId, message }),
+        });
+        if (retryRes.ok) {
+          const result = await retryRes.json();
+          if (result.reminder) State.data.reminders.push(result.reminder);
+          toast(`已向 ${emp.name} 发送催促通知${result.pushSent > 0 ? "（推送已送达）" : ""}`, "success");
+          navigateTo(State.currentView);
+          return;
+        }
+      }
+
+      if (res.ok) {
+        const result = await res.json();
+        if (result.reminder) State.data.reminders.push(result.reminder);
+        toast(`已向 ${emp.name} 发送催促通知${result.pushSent > 0 ? "（推送已送达）" : "（员工未开启推送，仅站内通知）"}`, "success");
+        navigateTo(State.currentView);
+      } else {
+        toast("催促发送失败，请重试", "danger");
+      }
+    } catch (err) {
+      console.error("[Remind] 发送失败:", err);
+      toast("网络错误，催促发送失败", "danger");
+    }
   },
 
   /* ===== 课程管理：新增课程 ===== */
@@ -2440,10 +2471,57 @@ function enterMainView(user) {
     }
   });
 
+  // 订阅 Web Push 推送通知（员工和带教老师需要接收催促）
+  setupPushNotifications();
+
   // 默认导航
   const defaultView = { employee: "today", mentor: "pending", hr: "dashboard" }[u.role];
   navigateTo(defaultView);
   toast(`欢迎回来，${u.name}！`, "info");
+}
+
+/* ===== Web Push 推送通知订阅 ===== */
+
+async function setupPushNotifications() {
+  if (!("serviceWorker" in navigator) || !("PushManager" in window)) return;
+  if (!API.online || !API.token) return;
+
+  try {
+    const reg = await navigator.serviceWorker.ready;
+
+    // 检查是否已订阅
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) {
+      // 获取 VAPID 公钥
+      const res = await fetch("/api/push/vapid-public");
+      const { publicKey } = await res.json();
+      const applicationServerKey = urlBase64ToUint8Array(publicKey);
+
+      sub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey,
+      });
+    }
+
+    // 发送订阅到服务器
+    await fetch("/api/push/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + API.token },
+      body: JSON.stringify(sub),
+    });
+    console.log("[Push] 推送订阅成功");
+  } catch (err) {
+    console.error("[Push] 订阅失败:", err);
+  }
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const rawData = atob(base64);
+  const arr = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; i++) arr[i] = rawData.charCodeAt(i);
+  return arr;
 }
 
 async function login(userId) {
