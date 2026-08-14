@@ -59,17 +59,6 @@
       "position": "HRBP",
       "avatarColor": "#dc2626",
       "loginToken": "gkjj_u6_2026"
-    },
-    {
-      "id": "u1786699120252",
-      "name": "迟翔中",
-      "role": "employee",
-      "dept": "营人",
-      "position": "人力",
-      "avatarColor": "#2563eb",
-      "loginToken": "lt_u1786699120252_mf2lll5c",
-      "mentorId": "u4",
-      "joinDate": "2026-08-14"
     }
   ],
   "plan": [
@@ -165,7 +154,7 @@
       "content": "掌握客户接待礼仪与沟通话术，学习需求挖掘与客户关系维护技巧。",
       "points": [
         "客户接待礼仪与话术",
-        "需求挖掘技巧（FABE法则���",
+        "需求挖掘技巧（FABE法则）",
         "客户关系维护与回访"
       ]
     },
@@ -541,7 +530,7 @@
       "status": "approved",
       "actualDuration": 61,
       "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了更深���的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-07-22T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-23T00:00:00.000Z",
@@ -1181,7 +1170,7 @@
       "status": "approved",
       "actualDuration": 81,
       "requiredDuration": 90,
-      "summary": "今日学习了门店实操 — 订单录入与交付，重点掌握了ERP订单��入实操。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了门店实操 — 订单录入与交付，重点掌握了ERP订单录入实操。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-08-07T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-08-08T00:00:00.000Z",
@@ -1331,7 +1320,7 @@
       "status": "approved",
       "actualDuration": 81,
       "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 ��� 软床与床垫，重点掌握了软床产品系列与风格。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了产品体系总览 — 软床与床垫，重点掌握了软床产品系列与风格。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-07-24T00:00:00.000Z",
       "reviewedBy": "u5",
       "reviewedAt": "2026-07-25T00:00:00.000Z",
@@ -1625,20 +1614,6 @@
       "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
-      "reviewComment": ""
-    },
-    {
-      "id": "lr_u1786699120252_1",
-      "employeeId": "u1786699120252",
-      "day": 1,
-      "date": "2026-08-14",
-      "status": "pending",
-      "actualDuration": 0,
-      "requiredDuration": 60,
-      "summary": "",
-      "submittedAt": null,
-      "reviewedBy": null,
-      "reviewedAt": null,
       "reviewComment": ""
     }
   ],
