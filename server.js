@@ -7,9 +7,21 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const webpush = require("web-push");
 
 const PORT = process.env.PORT || 3456;
 const DATA_FILE = path.join(__dirname, "data.json");
+
+/* ===== Web Push 配置 ===== */
+
+const VAPID_PUBLIC_KEY = "BLpT0y0T2V88v9TZPxrP4GQL5VE2bFcAR7DhFBW3T2vctHF_7LnriJ656hbNiGcbVmfMTw0ZJC97UdJAd8oOF60";
+const VAPID_PRIVATE_KEY = "03NRaAlFzcJPjy6M6Y0hAvqu3PHG6QR-lLGCfN4mVOk";
+
+webpush.setVapidDetails(
+  "mailto:hr@kukahome.com",
+  VAPID_PUBLIC_KEY,
+  VAPID_PRIVATE_KEY
+);
 
 /* ===== 样本数据（与前端一致）===== */
 
@@ -119,6 +131,7 @@ function initSampleData() {
     plan: JSON.parse(JSON.stringify(LEARNING_PLAN)),
     records: records,
     reminders: [],
+    pushSubscriptions: {},
     settings: {
       trialDays: 30,
       minSummaryWords: 50,
@@ -423,7 +436,10 @@ const server = http.createServer(async (req, res) => {
     if (!newData.users || !newData.plan || !newData.records) {
       return sendJSON(res, 400, { error: "数据格式不正确" });
     }
+    // 保护 pushSubscriptions 不被客户端覆盖
+    const oldPushSubs = appData.pushSubscriptions || {};
     appData = newData;
+    appData.pushSubscriptions = newData.pushSubscriptions || oldPushSubs;
     saveDataFile();
     broadcastUpdate();
     return sendJSON(res, 200, { ok: true });
@@ -455,6 +471,111 @@ const server = http.createServer(async (req, res) => {
       sseClients = sseClients.filter((c) => c !== res);
     });
     return;
+  }
+
+  /* --- API: 获取 VAPID 公钥 --- */
+  if (pathname === "/api/push/vapid-public" && req.method === "GET") {
+    return sendJSON(res, 200, { publicKey: VAPID_PUBLIC_KEY });
+  }
+
+  /* --- API: 订阅推送通知 --- */
+  if (pathname === "/api/push/subscribe" && req.method === "POST") {
+    const userId = authUser(req);
+    if (!userId) return sendJSON(res, 401, { error: "未登录" });
+    const body = await readBody(req);
+    let sub;
+    try { sub = JSON.parse(body); } catch { return sendJSON(res, 400, { error: "数据解析失败" }); }
+
+    if (!appData.pushSubscriptions) appData.pushSubscriptions = {};
+    if (!appData.pushSubscriptions[userId]) appData.pushSubscriptions[userId] = [];
+
+    // 避免重复订阅
+    const exists = appData.pushSubscriptions[userId].find(s => s.endpoint === sub.endpoint);
+    if (!exists) {
+      appData.pushSubscriptions[userId].push(sub);
+      saveDataFile();
+    }
+    return sendJSON(res, 200, { ok: true });
+  }
+
+  /* --- API: 退订推送通知 --- */
+  if (pathname === "/api/push/unsubscribe" && req.method === "POST") {
+    const userId = authUser(req);
+    if (!userId) return sendJSON(res, 401, { error: "未登录" });
+    const body = await readBody(req);
+    let sub;
+    try { sub = JSON.parse(body); } catch { return sendJSON(res, 400, { error: "数据解析失败" }); }
+
+    if (appData.pushSubscriptions && appData.pushSubscriptions[userId]) {
+      appData.pushSubscriptions[userId] = appData.pushSubscriptions[userId].filter(
+        s => s.endpoint !== sub.endpoint
+      );
+      saveDataFile();
+    }
+    return sendJSON(res, 200, { ok: true });
+  }
+
+  /* --- API: 发送催促（含推送通知）--- */
+  if (pathname === "/api/remind" && req.method === "POST") {
+    const userId = authUser(req);
+    if (!userId) return sendJSON(res, 401, { error: "未登录" });
+    const body = await readBody(req);
+    let parsed;
+    try { parsed = JSON.parse(body); } catch { return sendJSON(res, 400, { error: "数据解析失败" }); }
+
+    const { employeeId, message } = parsed;
+    const emp = appData.users.find(u => u.id === employeeId);
+    if (!emp) return sendJSON(res, 404, { error: "员工不存在" });
+
+    // 计算进度
+    const empRecords = appData.records.filter(r => r.employeeId === employeeId);
+    const completed = empRecords.filter(r => r.status === "approved").length;
+    const total = appData.plan.length;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    // 添加催促记录
+    const reminder = {
+      id: "rm_" + Date.now(),
+      employeeId: employeeId,
+      message: message || "请尽快完成学习任务",
+      sentAt: new Date().toISOString(),
+      sentBy: userId,
+      progressPercent: percent,
+      read: false,
+    };
+    appData.reminders.push(reminder);
+    saveDataFile();
+    broadcastUpdate();
+
+    // 发送 Web Push 通知
+    const subs = (appData.pushSubscriptions && appData.pushSubscriptions[employeeId]) || [];
+    const pushPayload = JSON.stringify({
+      title: "学习催促提醒",
+      body: message || "请尽快完成今日学习任务",
+      icon: "/icon-192.png",
+      badge: "/icon-192.png",
+      tag: "reminder-" + employeeId,
+      data: { url: "/?t=" + (emp.loginToken || "") },
+    });
+
+    let pushSent = 0;
+    for (const sub of subs) {
+      try {
+        await webpush.sendNotification(sub, pushPayload);
+        pushSent++;
+      } catch (err) {
+        console.error("[Push] 发送失败:", err.statusCode, err.message?.slice(0, 100));
+        // 410 Gone: 订阅已失效，删除它
+        if (err.statusCode === 410 || err.statusCode === 404) {
+          appData.pushSubscriptions[employeeId] = appData.pushSubscriptions[employeeId].filter(
+            s => s.endpoint !== sub.endpoint
+          );
+        }
+      }
+    }
+    if (pushSent > 0) saveDataFile();
+
+    return sendJSON(res, 200, { ok: true, pushSent, reminder });
   }
 
   /* --- 404 --- */
