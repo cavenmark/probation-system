@@ -59,6 +59,17 @@
       "position": "HRBP",
       "avatarColor": "#dc2626",
       "loginToken": "gkjj_u6_2026"
+    },
+    {
+      "id": "u1786699324044",
+      "name": "迟翔中",
+      "role": "employee",
+      "dept": "迟翔中",
+      "position": "迟翔中",
+      "avatarColor": "#2563eb",
+      "loginToken": "lt_u1786699324044_ts1dhb28",
+      "mentorId": "u4",
+      "joinDate": "2026-08-14"
     }
   ],
   "plan": [
@@ -530,7 +541,7 @@
       "status": "approved",
       "actualDuration": 61,
       "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了���深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-07-22T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-07-23T00:00:00.000Z",
@@ -740,7 +751,7 @@
       "status": "approved",
       "actualDuration": 131,
       "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 异议处理与促单，重点掌握了常见异议类型与应对。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了门店实操 — 异议处理与促单，重点掌握了常见异议类型与应对。通过学习，我对实��演练有了更深入的理解，后续将在实际工作中应用所学知识。",
       "submittedAt": "2026-08-06T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-08-07T00:00:00.000Z",
@@ -1132,7 +1143,7 @@
       "submittedAt": "2026-08-04T00:00:00.000Z",
       "reviewedBy": "u4",
       "reviewedAt": "2026-08-05T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
+      "reviewComment": "总结认真，理���到位，继续加油！"
     },
     {
       "id": "lr_u2_22",
@@ -1614,6 +1625,20 @@
       "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1786699324044_1",
+      "employeeId": "u1786699324044",
+      "day": 1,
+      "date": "2026-08-14",
+      "status": "pending",
+      "actualDuration": 0,
+      "requiredDuration": 60,
+      "summary": "",
+      "submittedAt": null,
+      "reviewedBy": null,
+      "reviewedAt": null,
       "reviewComment": ""
     }
   ],
