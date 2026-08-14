@@ -32,13 +32,34 @@
         <p class="login-subtitle">请使用微信扫描HR发给您的专属二维码登录</p>
 
         <!-- 扫码登录引导 -->
-        <div style="text-align:center;padding:24px 0;">
-          <div style="font-size:64px;line-height:1;margin-bottom:16px;">📱</div>
-          <div style="font-size:15px;color:var(--c-text-secondary);line-height:1.6;margin-bottom:8px;">
+        <div style="text-align:center;padding:20px 0;">
+          <div style="font-size:56px;line-height:1;margin-bottom:16px;">📱</div>
+          <div style="font-size:15px;color:var(--c-text-secondary);line-height:1.6;margin-bottom:16px;">
             使用微信扫一扫功能<br>扫描您的专属登录二维码
           </div>
-          <div style="font-size:13px;color:var(--c-text-muted);margin-top:12px;">
-            扫码后自动登录您的账号
+          <!-- 内置扫码按钮（PWA 安装后使用） -->
+          <button class="btn btn-primary" id="scan-btn" style="width:100%;margin-bottom:8px;">📷 扫描二维码登录</button>
+          <div style="font-size:12px;color:var(--c-text-muted);margin-top:8px;">
+            安装到桌面后，可点击上方按钮直接扫码
+          </div>
+        </div>
+
+        <!-- 扫码摄像头覆盖层 -->
+        <div id="scanner-overlay" class="scanner-overlay hidden">
+          <div class="scanner-box">
+            <div class="scanner-header">
+              <span>扫描登录二维码</span>
+              <button class="btn btn-ghost btn-sm" id="scanner-close">✕</button>
+            </div>
+            <video id="scanner-video" autoplay playsinline></video>
+            <canvas id="scanner-canvas" style="display:none;"></canvas>
+            <div class="scanner-frame">
+              <div class="scanner-corner scanner-corner-tl"></div>
+              <div class="scanner-corner scanner-corner-tr"></div>
+              <div class="scanner-corner scanner-corner-bl"></div>
+              <div class="scanner-corner scanner-corner-br"></div>
+            </div>
+            <div class="scanner-tip">将二维码对准框内</div>
           </div>
         </div>
 
@@ -85,6 +106,7 @@
   <div id="toast-container" class="toast-container"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
