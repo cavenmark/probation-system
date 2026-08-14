@@ -2227,29 +2227,48 @@ function navigateTo(view) {
 
 /* ===== 第十一部分：登录流程 ===== */
 
-function showRoleCards() {
-  document.getElementById("role-cards").classList.remove("hidden");
-  document.getElementById("user-list").classList.add("hidden");
+function showLoginPage() {
+  document.getElementById("login-view").classList.remove("hidden");
+  document.getElementById("main-view").classList.add("hidden");
+  // 重置 HR 登录表单
+  const hrForm = document.getElementById("hr-login-form");
+  if (hrForm) hrForm.classList.add("hidden");
+  const hrInput = document.getElementById("hr-name-input");
+  if (hrInput) hrInput.value = "";
 }
 
-function showUserList(role) {
-  const users = State.data.users.filter(u => u.role === role);
-  const list = document.getElementById("user-list");
-  list.innerHTML = `
-    <div style="font-size:13px;font-weight:600;color:var(--c-text-secondary);margin-bottom:12px;">选择登录用户：</div>
-    ${users.map(u => `
-      <div class="user-item" onclick="login('${u.id}')">
-        <div class="user-avatar" style="background:${u.avatarColor}">${Utils.getAvatarChar(u.name)}</div>
-        <div class="user-info-text">
-          <div class="un">${u.name}</div>
-          <div class="ud">${u.dept} · ${u.position}</div>
-        </div>
-      </div>
-    `).join("")}
-    <div class="btn-back" onclick="showRoleCards()">← 返回选择角色</div>
-  `;
-  document.getElementById("role-cards").classList.add("hidden");
-  list.classList.remove("hidden");
+function setupHRLogin() {
+  const toggle = document.getElementById("hr-login-toggle");
+  const form = document.getElementById("hr-login-form");
+  const btn = document.getElementById("hr-login-btn");
+  const input = document.getElementById("hr-name-input");
+
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      form.classList.toggle("hidden");
+      if (!form.classList.contains("hidden")) input.focus();
+    });
+  }
+  if (btn) {
+    btn.addEventListener("click", async () => {
+      const name = input.value.trim();
+      if (!name) { toast("请输入姓名", "danger"); return; }
+      try {
+        await API.login(name);
+        const user = State.data.users.find(u => u.name === name);
+        if (user) {
+          enterMainView(user);
+        }
+      } catch (e) {
+        toast("登录失败，请检查姓名是否正确", "danger");
+      }
+    });
+  }
+  if (input) {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") btn.click();
+    });
+  }
 }
 
 function enterMainView(user) {
@@ -2301,9 +2320,7 @@ function logout() {
   State.currentUser = null;
   State.timer = { running: false, seconds: 0, intervalId: null, recordId: null };
   API.logout();
-  document.getElementById("main-view").classList.add("hidden");
-  document.getElementById("login-view").classList.remove("hidden");
-  showRoleCards();
+  showLoginPage();
 }
 
 /* ===== 第十二部分：初始化 ===== */
@@ -2316,11 +2333,17 @@ async function init() {
     document.getElementById("login-view").innerHTML = `
       <div class="login-card">
         <h1 class="login-title" style="color:var(--c-danger);">无法连接服务器</h1>
-        <p class="login-subtitle">请确保后端服务已启动（node server.js）</p>
+        <p class="login-subtitle">请稍后重试，或联系管理员</p>
       </div>
     `;
     return;
   }
+
+  // 设置 HR 登录表单
+  setupHRLogin();
+
+  // 退出登录按钮
+  document.getElementById("logout-btn").addEventListener("click", logout);
 
   // 检查扫码登录（URL 中的 ?t=TOKEN）
   const urlParams = new URLSearchParams(window.location.search);
@@ -2332,14 +2355,13 @@ async function init() {
       window.history.replaceState({}, document.title, window.location.pathname);
       enterMainView(result.user);
       toast(`扫码登录成功，欢迎 ${result.user.name}！`, "success");
-      // 角色卡片点击 & 退出登录
-      document.querySelectorAll(".role-card").forEach(card => {
-        card.addEventListener("click", () => showUserList(card.dataset.role));
-      });
-      document.getElementById("logout-btn").addEventListener("click", logout);
       return;
     } catch (e) {
+      // 扫码失败：显示提示，不暴露用户列表
+      document.querySelector(".login-subtitle").innerHTML = 
+        '<span style="color:var(--c-danger);">二维码无效或已失效，请联系HR重新获取</span>';
       toast("扫码登录失败：令牌无效或已失效", "danger");
+      return;
     }
   }
 
@@ -2349,13 +2371,7 @@ async function init() {
     enterMainView(savedUser);
   }
 
-  // 角色卡片点击
-  document.querySelectorAll(".role-card").forEach(card => {
-    card.addEventListener("click", () => showUserList(card.dataset.role));
-  });
-
-  // 退出登录
-  document.getElementById("logout-btn").addEventListener("click", logout);
+  // 未登录状态：显示扫码登录引导页（默认已显示）
 }
 
 document.addEventListener("DOMContentLoaded", init);
