@@ -1714,15 +1714,6 @@
       "sentBy": "u6",
       "progressPercent": 83,
       "read": false
-    },
-    {
-      "id": "rm_1786948585193",
-      "employeeId": "u1",
-      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-17T06:36:25.193Z",
-      "sentBy": "u6",
-      "progressPercent": 83,
-      "read": false
     }
   ],
   "settings": {
