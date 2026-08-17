@@ -1723,5 +1723,15 @@
     "orgName": "顾家家居",
     "deptName": "人才发展中心"
   },
-  "pushSubscriptions": {}
+  "pushSubscriptions": {
+    "u6": [
+      {
+        "endpoint": "https://web.push.apple.com/QLYXoukokLMyoCoZ1InQklDKNJ96m-hbZnvVqz5PxPaK9apOtDvpogpTvi8AqwZIrZzULJzIFmDf2eX7q69_dvRt-ftGsW_SLtq0Xb9wtdOcnuNW1RhAkrQmquI80-dp76416WPM9-yCLmRUKQIbkCtUY7CkFmcbDm50X3J6Lk0",
+        "keys": {
+          "p256dh": "BFWspY4_9Ztir8oHLck9ENXlK2_r8hcdlmepzZOd073yTRTNWgcwVTrl-oU1bipPcgDVxjcgZsp2GYOuNK4a4dE",
+          "auth": "p4V0mPq3KkowGG236YQf1w"
+        }
+      }
+    ]
+  }
 }
