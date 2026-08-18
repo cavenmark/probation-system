@@ -75,90 +75,6 @@
   "plan": [
     {
       "day": 1,
-      "title": "阶段性考核 — 前两周复盘",
-      "category": "考核评估",
-      "duration": 90,
-      "content": "对前两周学习内容进行系统复盘，完成阶段性测试，查漏补缺。",
-      "points": [
-        "知识体系梳理与复盘",
-        "阶段性在线测试",
-        "薄弱点分析与改进计划"
-      ]
-    },
-    {
-      "day": 2,
-      "title": "职业发展规划与晋升路径",
-      "category": "综合素养",
-      "duration": 45,
-      "content": "了解顾家家居员工职业发展通道与晋升机制，制定个人成长计划。",
-      "points": [
-        "双通道职业发展体系",
-        "晋升标准与评估流程",
-        "个人发展计划(IDP)制定"
-      ]
-    },
-    {
-      "day": 3,
-      "title": "门店实操 — 客户接待模拟",
-      "category": "实操演练",
-      "duration": 120,
-      "content": "在带教老师指导下进行客户接待模拟演练，覆盖接待、需求挖掘、方案推荐全流程。",
-      "points": [
-        "接待礼仪实战演练",
-        "需求挖掘话术实操",
-        "带教老师点评与反馈"
-      ]
-    },
-    {
-      "day": 4,
-      "title": "门店实操 — 产品讲解演练",
-      "category": "实操演练",
-      "duration": 120,
-      "content": "针对核心产品线进行讲解演练，掌握产品卖点提炼与客户化表达。",
-      "points": [
-        "核心产品卖点提炼",
-        "客户化讲解话术",
-        "竞品对比话术演练"
-      ]
-    },
-    {
-      "day": 5,
-      "title": "门店实操 — 异议处理与促单",
-      "category": "实操演练",
-      "duration": 120,
-      "content": "模拟客户异议场景，练习异议处理与促单技巧，提升成交能力。",
-      "points": [
-        "常见异议类型与应对",
-        "促单时机把握",
-        "成交话术实战"
-      ]
-    },
-    {
-      "day": 6,
-      "title": "门店实操 — 订单录入与交付",
-      "category": "实操演练",
-      "duration": 90,
-      "content": "实操订单录入系统，了解交付全流程节点，模拟异常处理。",
-      "points": [
-        "ERP订单录入实操",
-        "交付流程节点管理",
-        "异常订单处理模拟"
-      ]
-    },
-    {
-      "day": 7,
-      "title": "门店实操 — 独立接待考核",
-      "category": "实操演练",
-      "duration": 180,
-      "content": "在带教老师观察下独立完成客户接待全流程，作为转正考核的重要参考。",
-      "points": [
-        "独立接待真实客户",
-        "全流程能力综合评估",
-        "带教老师评分与反馈"
-      ]
-    },
-    {
-      "day": 8,
       "title": "客户回访与关系维护",
       "category": "门店运营",
       "duration": 60,
@@ -170,7 +86,7 @@
       ]
     },
     {
-      "day": 9,
+      "day": 2,
       "title": "门店经营数据分析实操",
       "category": "市场分析",
       "duration": 75,
@@ -182,7 +98,7 @@
       ]
     },
     {
-      "day": 10,
+      "day": 3,
       "title": "试用期总结撰写",
       "category": "考核评估",
       "duration": 90,
@@ -194,7 +110,7 @@
       ]
     },
     {
-      "day": 11,
+      "day": 4,
       "title": "转正答辩准备",
       "category": "考核评估",
       "duration": 90,
@@ -206,7 +122,7 @@
       ]
     },
     {
-      "day": 12,
+      "day": 5,
       "title": "转正答辩与评估",
       "category": "考核评估",
       "duration": 120,
@@ -220,107 +136,9 @@
   ],
   "records": [
     {
-      "id": "lr_u1_15",
-      "employeeId": "u1",
-      "day": 1,
-      "date": "2026-07-29",
-      "status": "approved",
-      "actualDuration": 89,
-      "requiredDuration": 90,
-      "summary": "今日学习了阶段性考核 — 前两周复盘，重点掌握了知识体系梳理与复盘。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-29T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-30T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_20",
-      "employeeId": "u1",
-      "day": 2,
-      "date": "2026-08-03",
-      "status": "approved",
-      "actualDuration": 58,
-      "requiredDuration": 45,
-      "summary": "今日学习了职业发展规划与晋升路径，重点掌握了双通道职业发展体系。通过学习，我对综合素养有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-03T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-04T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_21",
-      "employeeId": "u1",
-      "day": 3,
-      "date": "2026-08-04",
-      "status": "approved",
-      "actualDuration": 135,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 客户接待模拟，重点掌握了接待礼仪实战演练。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-04T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-05T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_22",
-      "employeeId": "u1",
-      "day": 4,
-      "date": "2026-08-05",
-      "status": "approved",
-      "actualDuration": 135,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 产品讲解演练，重点掌握了核心产品卖点提炼。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-05T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-06T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_23",
-      "employeeId": "u1",
-      "day": 5,
-      "date": "2026-08-06",
-      "status": "approved",
-      "actualDuration": 131,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 异议处理与促单，重点掌握了常见异议类型与应对。通过学习，我对实��演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-06T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-07T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_24",
-      "employeeId": "u1",
-      "day": 6,
-      "date": "2026-08-07",
-      "status": "approved",
-      "actualDuration": 97,
-      "requiredDuration": 90,
-      "summary": "今日学习了门店实操 — 订单录入与交付，重点掌握了ERP订单录入实操。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-07T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-08T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_25",
-      "employeeId": "u1",
-      "day": 7,
-      "date": "2026-08-08",
-      "status": "approved",
-      "actualDuration": 199,
-      "requiredDuration": 180,
-      "summary": "今日学习了门店实操 — 独立接待考核，重点掌握了独立接待真实客户。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-08T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-09T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u1_26",
       "employeeId": "u1",
-      "day": 8,
+      "day": 1,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 67,
@@ -334,7 +152,7 @@
     {
       "id": "lr_u1_27",
       "employeeId": "u1",
-      "day": 9,
+      "day": 2,
       "date": "2026-08-10",
       "status": "submitted",
       "actualDuration": 84,
@@ -348,7 +166,7 @@
     {
       "id": "lr_u1_28",
       "employeeId": "u1",
-      "day": 10,
+      "day": 3,
       "date": "2026-08-11",
       "status": "submitted",
       "actualDuration": 109,
@@ -362,7 +180,7 @@
     {
       "id": "lr_u1_29",
       "employeeId": "u1",
-      "day": 11,
+      "day": 4,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 108,
@@ -374,7 +192,7 @@
     {
       "id": "lr_u1_30",
       "employeeId": "u1",
-      "day": 12,
+      "day": 5,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -384,107 +202,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u2_15",
-      "employeeId": "u2",
-      "day": 1,
-      "date": "2026-07-29",
-      "status": "approved",
-      "actualDuration": 98,
-      "requiredDuration": 90,
-      "summary": "今日学习了阶段性考核 — 前两周复盘，重点掌握了知识体系梳理与复盘。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-29T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-30T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_20",
-      "employeeId": "u2",
-      "day": 2,
-      "date": "2026-08-03",
-      "status": "approved",
-      "actualDuration": 60,
-      "requiredDuration": 45,
-      "summary": "今日学习了职业发展规划与晋升路径，重点掌握了双通道职业发展体系。通过学习，我对综合素养有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-03T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-04T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_21",
-      "employeeId": "u2",
-      "day": 3,
-      "date": "2026-08-04",
-      "status": "approved",
-      "actualDuration": 137,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 客户接待模拟，重点掌握了接待礼仪实战演练。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-04T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-05T00:00:00.000Z",
-      "reviewComment": "总结认真，理���到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_22",
-      "employeeId": "u2",
-      "day": 4,
-      "date": "2026-08-05",
-      "status": "rejected",
-      "actualDuration": 117,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 产品讲解演练，重点掌握了核心产品卖点提炼。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-05T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-06T00:00:00.000Z",
-      "reviewComment": "总结不够具体，请补充实际案例。"
-    },
-    {
-      "id": "lr_u2_23",
-      "employeeId": "u2",
-      "day": 5,
-      "date": "2026-08-06",
-      "status": "approved",
-      "actualDuration": 116,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 异议处理与促单，重点掌握了常见异议类型与应对。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-06T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-07T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_24",
-      "employeeId": "u2",
-      "day": 6,
-      "date": "2026-08-07",
-      "status": "approved",
-      "actualDuration": 81,
-      "requiredDuration": 90,
-      "summary": "今日学习了门店实操 — 订单录入与交付，重��掌握了ERP订单录入实操。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用���学知识。",
-      "submittedAt": "2026-08-07T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-08T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_25",
-      "employeeId": "u2",
-      "day": 7,
-      "date": "2026-08-08",
-      "status": "approved",
-      "actualDuration": 198,
-      "requiredDuration": 180,
-      "summary": "今日学习了门店实操 — 独立接待考核，重点掌握了独立接待真实客户。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-08T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-09T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u2_26",
       "employeeId": "u2",
-      "day": 8,
+      "day": 1,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 78,
@@ -498,7 +218,7 @@
     {
       "id": "lr_u2_27",
       "employeeId": "u2",
-      "day": 9,
+      "day": 2,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 81,
@@ -512,7 +232,7 @@
     {
       "id": "lr_u2_28",
       "employeeId": "u2",
-      "day": 10,
+      "day": 3,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 96,
@@ -526,7 +246,7 @@
     {
       "id": "lr_u2_29",
       "employeeId": "u2",
-      "day": 11,
+      "day": 4,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 104,
@@ -538,7 +258,7 @@
     {
       "id": "lr_u2_30",
       "employeeId": "u2",
-      "day": 12,
+      "day": 5,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -548,105 +268,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u3_15",
-      "employeeId": "u3",
-      "day": 1,
-      "date": "2026-08-03",
-      "status": "approved",
-      "actualDuration": 94,
-      "requiredDuration": 90,
-      "summary": "今日学习了阶段性考核 — 前两周复盘，重点掌握了知识体系梳理与复盘。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-03T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-04T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_20",
-      "employeeId": "u3",
-      "day": 2,
-      "date": "2026-08-08",
-      "status": "approved",
-      "actualDuration": 59,
-      "requiredDuration": 45,
-      "summary": "��日学习了职业发展������晋升路径，重点掌握了双通道职业发展体系。通过学习，我对综合素养有��更深入的理��，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-08T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-09T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_21",
-      "employeeId": "u3",
-      "day": 3,
-      "date": "2026-08-09",
-      "status": "approved",
-      "actualDuration": 120,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 客户接待模拟，重点掌握了接待礼仪实战演练。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-09T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-10T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_22",
-      "employeeId": "u3",
-      "day": 4,
-      "date": "2026-08-10",
-      "status": "approved",
-      "actualDuration": 126,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 产品讲解演练，重点掌握了核心产品卖点提炼。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-10T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-11T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_23",
-      "employeeId": "u3",
-      "day": 5,
-      "date": "2026-08-11",
-      "status": "approved",
-      "actualDuration": 117,
-      "requiredDuration": 120,
-      "summary": "今日学习了门店实操 — 异议处理与促单，重点掌握了常见异议类型与应对。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-11T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-12T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_24",
-      "employeeId": "u3",
-      "day": 6,
-      "date": "2026-08-12",
-      "status": "approved",
-      "actualDuration": 94,
-      "requiredDuration": 90,
-      "summary": "今日学习了门店实操 — 订单录入与交付，重点掌握了ERP订单录入实操。通过学习，我对实操演练有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-12T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-13T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_25",
-      "employeeId": "u3",
-      "day": 7,
-      "date": "2026-08-13",
-      "status": "submitted",
-      "actualDuration": 187,
-      "requiredDuration": 180,
-      "summary": "今天学习了门店实操 — 独立接待考核，内容包括在带教老师观察下独立完成客户接待全流程，作为转正考核的重要参考。...通过学习掌握了核心知识点，对日常工作有帮助。",
-      "submittedAt": "2026-08-13T00:00:00.000Z",
-      "reviewComment": ""
-    },
-    {
       "id": "lr_u3_26",
       "employeeId": "u3",
-      "day": 8,
+      "day": 1,
       "date": "2026-08-14",
       "status": "pending",
       "actualDuration": 0,
