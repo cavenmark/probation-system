@@ -323,14 +323,37 @@ const API = {
     };
   },
 
-  /* 上传附件到服务器 */
-  async uploadFile(file) {
-    const resp = await fetch("/api/upload", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
-      body: JSON.stringify({ filename: file.name, contentType: file.type, base64Data: file.base64 }),
-    });
-    return resp.json();
+  /* 上传附件到服务器（分片上传，大小不限） */
+  async uploadFile(att, onProgress) {
+    const CHUNK = 40 * 1024 * 1024; // 每片 40MB（GitHub 单文件限制 100MB，留余量）
+    const file = att.file;
+    const totalChunks = Math.max(1, Math.ceil(file.size / CHUNK));
+    const uploadId = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    let lastResult = null;
+    for (let i = 0; i < totalChunks; i++) {
+      const blob = file.slice(i * CHUNK, Math.min((i + 1) * CHUNK, file.size));
+      const base64 = await new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = e => resolve(e.target.result.split(",")[1]);
+        r.onerror = () => reject(new Error("读取文件失败"));
+        r.readAsDataURL(blob);
+      });
+      const resp = await fetch("/api/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
+        body: JSON.stringify({
+          filename: file.name,
+          contentType: file.type,
+          totalSize: file.size,
+          uploadId, chunkIndex: i, totalChunks,
+          base64Data: base64,
+        }),
+      });
+      lastResult = await resp.json();
+      if (!lastResult || !lastResult.success) return lastResult || { success: false, error: "上传失败" };
+      if (onProgress) onProgress(Math.round(((i + 1) / totalChunks) * 100));
+    }
+    return lastResult;
   },
 };
 
@@ -1733,21 +1756,13 @@ const Actions = {
   handleFileSelect(input) {
     const files = Array.from(input.files);
     files.forEach(file => {
-      if (file.size > 100 * 1024 * 1024) {
-        toast(`文件 ${file.name} 超过 100MB 限制`, "warning");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        State.pendingAttachments.push({
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          base64: e.target.result.split(",")[1],
-        });
-        Actions.renderAttachmentList();
-      };
-      reader.readAsDataURL(file);
+      State.pendingAttachments.push({
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        file: file,
+      });
+      Actions.renderAttachmentList();
     });
     input.value = "";
   },
@@ -1795,6 +1810,9 @@ const Actions = {
   },
 
   buildAttachmentUrl(att) {
+    if (att.githubPaths && att.githubPaths.length) {
+      return `/api/attachment?parts=${encodeURIComponent(att.githubPaths.join(","))}&name=${encodeURIComponent(att.name || "file")}&type=${encodeURIComponent(att.type || "")}`;
+    }
     if (att.githubPath) {
       return `/api/attachment?path=${encodeURIComponent(att.githubPath)}`;
     }
@@ -1828,7 +1846,7 @@ const Actions = {
             <div class="upload-placeholder">
               <span style="font-size:36px;">📎</span>
               <div style="font-weight:600;margin-top:8px;">点击选择文件</div>
-              <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">支持文档、PPT、视频等，可多选，单个最大 100MB</div>
+              <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">支持文档、PPT、视频等，可多选多个附件，大小不限</div>
             </div>
           </div>
           <div id="attachment-list"></div>
@@ -1897,19 +1915,22 @@ const Actions = {
     if (isNaN(duration) || duration < 0 || duration > 500) { toast("学习时长需在 0–500 分钟之间", "warning"); return; }
     if (!content) { toast("请填写课程描述", "warning"); return; }
 
-    // 上传新附件
+    // 上传新附件（分片，大小不限）
     let newAttachments = [];
     const pending = State.pendingAttachments;
     if (pending.length > 0) {
       const btn = document.querySelector('.modal-footer .btn-primary');
-      if (btn) { btn.disabled = true; btn.textContent = "上传附件中..."; }
+      let fi = 0;
       for (const att of pending) {
+        fi++;
         try {
-          const result = await API.uploadFile(att);
-          if (result.success) {
+          const result = await API.uploadFile(att, (pct) => {
+            if (btn) { btn.disabled = true; btn.textContent = `上传附件 ${fi}/${pending.length}（${pct}%）...`; }
+          });
+          if (result && result.success) {
             newAttachments.push(result.attachment);
           } else {
-            toast(`附件「${att.name}」上传失败: ${result.error}`, "warning");
+            toast(`附件「${att.name}」上传失败: ${result?.error || "未知错误"}`, "warning");
           }
         } catch (e) {
           toast(`附件「${att.name}」上传失败`, "warning");
