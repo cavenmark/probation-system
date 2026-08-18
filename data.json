@@ -75,150 +75,6 @@
   "plan": [
     {
       "day": 1,
-      "title": "公司简介与发展历程",
-      "category": "企业文化",
-      "duration": 60,
-      "content": "了解顾家家居自2003年创立以来的发展历程、上市历程、全球化布局，理解企业愿景与使命。",
-      "points": [
-        "顾家家居发展大事记与里程碑",
-        "企业愿景、使命、价值观",
-        "全球化战略与市场布局"
-      ]
-    },
-    {
-      "day": 2,
-      "title": "企业文化与核心价值观",
-      "category": "企业文化",
-      "duration": 60,
-      "content": "深入学习顾家家居\"因爱而生\"的品牌理念，理解企业精神与行为准则，树立正确的职业态度。",
-      "points": [
-        "品牌理念与企业文化体系",
-        "员工行为准则与职业素养",
-        "企业社会责任实践"
-      ]
-    },
-    {
-      "day": 3,
-      "title": "组织架构与部门职能",
-      "category": "企业文化",
-      "duration": 45,
-      "content": "熟悉公司整体组织架构，了解各中心/部门的职能定位与协作关系，明确自身岗位在组织中的位置。",
-      "points": [
-        "公司组织架构图与汇报关系",
-        "各中心/部门职能说明",
-        "跨部门协作流程"
-      ]
-    },
-    {
-      "day": 4,
-      "title": "产品体系总览 — 沙发品类",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "系统学习顾家沙发产品线，包括功能沙发、布艺沙发、真皮沙发等系列，了解材质工艺与价格区间。",
-      "points": [
-        "沙发产品系列与定位",
-        "材质工艺（真皮/布艺/科技布）",
-        "价格体系与目标客群"
-      ]
-    },
-    {
-      "day": 5,
-      "title": "产品体系总览 — 软床与床垫",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "学习顾家软床及床垫产品线，了解人体工学设计、材质特点及核心卖点。",
-      "points": [
-        "软床产品系列与风格",
-        "床垫材质与人体工学设计",
-        "核心卖点与竞品对比"
-      ]
-    },
-    {
-      "day": 6,
-      "title": "产品体系总览 — 全屋定制",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "了解顾家全屋定制业务模式，学习定制衣柜、橱柜等产品体系及设计流程。",
-      "points": [
-        "全屋定制业务模式",
-        "定制产品体系与工艺",
-        "设计流程与交付周期"
-      ]
-    },
-    {
-      "day": 7,
-      "title": "门店运营基础流程",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "学习门店日常运营标准流程，包括开店准备、客户接待、门店陈列维护等。",
-      "points": [
-        "门店日常运营SOP",
-        "门店陈列标准与维护",
-        "开店/闭店流程"
-      ]
-    },
-    {
-      "day": 8,
-      "title": "客户服务与沟通技巧",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "掌握客户接待礼仪与沟通话术，学习需求挖掘与客户关系维护技巧。",
-      "points": [
-        "客户接待礼仪与话术",
-        "需求挖掘技巧（FABE法则）",
-        "客户关系维护与回访"
-      ]
-    },
-    {
-      "day": 9,
-      "title": "销售流程与成交技巧",
-      "category": "门店运营",
-      "duration": 90,
-      "content": "学习完整销售流程，从获客到成交的全链路技巧，掌握异议处理与促单方法。",
-      "points": [
-        "销售漏斗与转化管理",
-        "异议处理技巧",
-        "促单与成交话术"
-      ]
-    },
-    {
-      "day": 10,
-      "title": "数字化工具使用培训",
-      "category": "系统操作",
-      "duration": 75,
-      "content": "学习公司内部系统操作，包括ERP、CRM、OA系统的基本功能与日常使用。",
-      "points": [
-        "ERP系统基础操作",
-        "CRM客户管理流程",
-        "OA审批与协同"
-      ]
-    },
-    {
-      "day": 11,
-      "title": "订单管理与交付流程",
-      "category": "系统操作",
-      "duration": 60,
-      "content": "了解从下单到交付的完整流程，掌握订单系统操作及异常处理。",
-      "points": [
-        "订单录入与审核流程",
-        "生产排期与物流配送",
-        "交付异常处理机制"
-      ]
-    },
-    {
-      "day": 12,
-      "title": "售后服务与客诉处理",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "学习售后服务标准与客诉处理流程，提升客户满意度与复购率。",
-      "points": [
-        "售后服务标准与响应时效",
-        "客诉分级处理流程",
-        "客户满意度提升策略"
-      ]
-    },
-    {
-      "day": 13,
       "title": "竞品分析与市场洞察",
       "category": "市场分析",
       "duration": 75,
@@ -230,7 +86,7 @@
       ]
     },
     {
-      "day": 14,
+      "day": 2,
       "title": "门店数据分析基础",
       "category": "市场分析",
       "duration": 60,
@@ -242,7 +98,7 @@
       ]
     },
     {
-      "day": 15,
+      "day": 3,
       "title": "阶段性考核 — 前两周复盘",
       "category": "考核评估",
       "duration": 90,
@@ -254,7 +110,7 @@
       ]
     },
     {
-      "day": 16,
+      "day": 4,
       "title": "产品搭配与全屋方案设计",
       "category": "产品知识",
       "duration": 90,
@@ -266,7 +122,7 @@
       ]
     },
     {
-      "day": 17,
+      "day": 5,
       "title": "促销活动与营销执行",
       "category": "门店运营",
       "duration": 60,
@@ -278,7 +134,7 @@
       ]
     },
     {
-      "day": 18,
+      "day": 6,
       "title": "VIP客户管理与服务",
       "category": "门店运营",
       "duration": 60,
@@ -290,7 +146,7 @@
       ]
     },
     {
-      "day": 19,
+      "day": 7,
       "title": "团队协作与门店会议",
       "category": "综合素养",
       "duration": 45,
@@ -302,7 +158,7 @@
       ]
     },
     {
-      "day": 20,
+      "day": 8,
       "title": "职业发展规划与晋升路径",
       "category": "综合素养",
       "duration": 45,
@@ -314,7 +170,7 @@
       ]
     },
     {
-      "day": 21,
+      "day": 9,
       "title": "门店实操 — 客户接待模拟",
       "category": "实操演练",
       "duration": 120,
@@ -326,7 +182,7 @@
       ]
     },
     {
-      "day": 22,
+      "day": 10,
       "title": "门店实操 — 产品讲解演练",
       "category": "实操演练",
       "duration": 120,
@@ -338,7 +194,7 @@
       ]
     },
     {
-      "day": 23,
+      "day": 11,
       "title": "门店实操 — 异议处理与促单",
       "category": "实操演练",
       "duration": 120,
@@ -350,7 +206,7 @@
       ]
     },
     {
-      "day": 24,
+      "day": 12,
       "title": "门店实操 — 订单录入与交付",
       "category": "实操演练",
       "duration": 90,
@@ -362,7 +218,7 @@
       ]
     },
     {
-      "day": 25,
+      "day": 13,
       "title": "门店实操 — 独立接待考核",
       "category": "实操演练",
       "duration": 180,
@@ -374,7 +230,7 @@
       ]
     },
     {
-      "day": 26,
+      "day": 14,
       "title": "客户回访与关系维护",
       "category": "门店运营",
       "duration": 60,
@@ -386,7 +242,7 @@
       ]
     },
     {
-      "day": 27,
+      "day": 15,
       "title": "门店经营数据分析实操",
       "category": "市场分析",
       "duration": 75,
@@ -398,7 +254,7 @@
       ]
     },
     {
-      "day": 28,
+      "day": 16,
       "title": "试用期总结撰写",
       "category": "考核评估",
       "duration": 90,
@@ -410,7 +266,7 @@
       ]
     },
     {
-      "day": 29,
+      "day": 17,
       "title": "转正答辩准备",
       "category": "考核评估",
       "duration": 90,
@@ -422,7 +278,7 @@
       ]
     },
     {
-      "day": 30,
+      "day": 18,
       "title": "转正答辩与评估",
       "category": "考核评估",
       "duration": 120,
@@ -436,177 +292,9 @@
   ],
   "records": [
     {
-      "id": "lr_u1_1",
-      "employeeId": "u1",
-      "day": 1,
-      "date": "2026-07-15",
-      "status": "approved",
-      "actualDuration": 76,
-      "requiredDuration": 60,
-      "summary": "今日学习了公司简介与发展历程，重点掌握了顾家家居发展大事记与里程碑。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-15T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-16T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_2",
-      "employeeId": "u1",
-      "day": 2,
-      "date": "2026-07-16",
-      "status": "approved",
-      "actualDuration": 74,
-      "requiredDuration": 60,
-      "summary": "今日学习了企业文化与核心价值观，重点掌握了品牌理念与企业文化体系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-16T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-17T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_3",
-      "employeeId": "u1",
-      "day": 3,
-      "date": "2026-07-17",
-      "status": "approved",
-      "actualDuration": 37,
-      "requiredDuration": 45,
-      "summary": "今日学习了组织架构与部门职能，重点掌握了公司组织架构图与汇报关系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-17T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-18T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_4",
-      "employeeId": "u1",
-      "day": 4,
-      "date": "2026-07-18",
-      "status": "approved",
-      "actualDuration": 104,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 沙发品类，重点掌握了沙发产品系列与定位。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-18T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-19T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_5",
-      "employeeId": "u1",
-      "day": 5,
-      "date": "2026-07-19",
-      "status": "approved",
-      "actualDuration": 98,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 软床与床垫，重点掌握了软床产品系列与风格。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-19T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-20T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油���������"
-    },
-    {
-      "id": "lr_u1_6",
-      "employeeId": "u1",
-      "day": 6,
-      "date": "2026-07-20",
-      "status": "approved",
-      "actualDuration": 97,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 全屋定制，重点掌握了全屋定制业务模式。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-20T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-21T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_7",
-      "employeeId": "u1",
-      "day": 7,
-      "date": "2026-07-21",
-      "status": "approved",
-      "actualDuration": 60,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店运营基础流程，重点掌握了门店日常运营SOP。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-21T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-22T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_8",
-      "employeeId": "u1",
-      "day": 8,
-      "date": "2026-07-22",
-      "status": "approved",
-      "actualDuration": 61,
-      "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对���店���������营���了���深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-22T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-23T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_9",
-      "employeeId": "u1",
-      "day": 9,
-      "date": "2026-07-23",
-      "status": "approved",
-      "actualDuration": 106,
-      "requiredDuration": 90,
-      "summary": "今日学习了销售流程与成交技巧，重点掌握了销售漏斗与转化管理。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-23T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-24T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_10",
-      "employeeId": "u1",
-      "day": 10,
-      "date": "2026-07-24",
-      "status": "approved",
-      "actualDuration": 75,
-      "requiredDuration": 75,
-      "summary": "今日学习了数字化工具使用培训，重点掌握了ERP系统基础操作。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-24T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-25T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_11",
-      "employeeId": "u1",
-      "day": 11,
-      "date": "2026-07-25",
-      "status": "approved",
-      "actualDuration": 50,
-      "requiredDuration": 60,
-      "summary": "今日学习了订单管理与交付流程，重点掌握了订单录入与审核流程。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-25T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-26T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_12",
-      "employeeId": "u1",
-      "day": 12,
-      "date": "2026-07-26",
-      "status": "approved",
-      "actualDuration": 61,
-      "requiredDuration": 60,
-      "summary": "今日学习了售后服务与客诉处理，重点掌握了售后服务标准与响应时效。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-26T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-27T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u1_13",
       "employeeId": "u1",
-      "day": 13,
+      "day": 1,
       "date": "2026-07-27",
       "status": "submitted",
       "actualDuration": 90,
@@ -620,7 +308,7 @@
     {
       "id": "lr_u1_14",
       "employeeId": "u1",
-      "day": 14,
+      "day": 2,
       "date": "2026-07-28",
       "status": "approved",
       "actualDuration": 67,
@@ -634,7 +322,7 @@
     {
       "id": "lr_u1_15",
       "employeeId": "u1",
-      "day": 15,
+      "day": 3,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 89,
@@ -648,7 +336,7 @@
     {
       "id": "lr_u1_16",
       "employeeId": "u1",
-      "day": 16,
+      "day": 4,
       "date": "2026-07-30",
       "status": "approved",
       "actualDuration": 94,
@@ -662,7 +350,7 @@
     {
       "id": "lr_u1_17",
       "employeeId": "u1",
-      "day": 17,
+      "day": 5,
       "date": "2026-07-31",
       "status": "approved",
       "actualDuration": 56,
@@ -676,7 +364,7 @@
     {
       "id": "lr_u1_18",
       "employeeId": "u1",
-      "day": 18,
+      "day": 6,
       "date": "2026-08-01",
       "status": "approved",
       "actualDuration": 54,
@@ -690,7 +378,7 @@
     {
       "id": "lr_u1_19",
       "employeeId": "u1",
-      "day": 19,
+      "day": 7,
       "date": "2026-08-02",
       "status": "approved",
       "actualDuration": 48,
@@ -704,7 +392,7 @@
     {
       "id": "lr_u1_20",
       "employeeId": "u1",
-      "day": 20,
+      "day": 8,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 58,
@@ -718,7 +406,7 @@
     {
       "id": "lr_u1_21",
       "employeeId": "u1",
-      "day": 21,
+      "day": 9,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 135,
@@ -732,7 +420,7 @@
     {
       "id": "lr_u1_22",
       "employeeId": "u1",
-      "day": 22,
+      "day": 10,
       "date": "2026-08-05",
       "status": "approved",
       "actualDuration": 135,
@@ -746,7 +434,7 @@
     {
       "id": "lr_u1_23",
       "employeeId": "u1",
-      "day": 23,
+      "day": 11,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 131,
@@ -760,7 +448,7 @@
     {
       "id": "lr_u1_24",
       "employeeId": "u1",
-      "day": 24,
+      "day": 12,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 97,
@@ -774,7 +462,7 @@
     {
       "id": "lr_u1_25",
       "employeeId": "u1",
-      "day": 25,
+      "day": 13,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 199,
@@ -788,7 +476,7 @@
     {
       "id": "lr_u1_26",
       "employeeId": "u1",
-      "day": 26,
+      "day": 14,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 67,
@@ -802,7 +490,7 @@
     {
       "id": "lr_u1_27",
       "employeeId": "u1",
-      "day": 27,
+      "day": 15,
       "date": "2026-08-10",
       "status": "submitted",
       "actualDuration": 84,
@@ -816,7 +504,7 @@
     {
       "id": "lr_u1_28",
       "employeeId": "u1",
-      "day": 28,
+      "day": 16,
       "date": "2026-08-11",
       "status": "submitted",
       "actualDuration": 109,
@@ -830,7 +518,7 @@
     {
       "id": "lr_u1_29",
       "employeeId": "u1",
-      "day": 29,
+      "day": 17,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 108,
@@ -842,7 +530,7 @@
     {
       "id": "lr_u1_30",
       "employeeId": "u1",
-      "day": 30,
+      "day": 18,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -852,177 +540,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u2_1",
-      "employeeId": "u2",
-      "day": 1,
-      "date": "2026-07-15",
-      "status": "approved",
-      "actualDuration": 57,
-      "requiredDuration": 60,
-      "summary": "今日学习了公司简介与发展历程，重点掌握了顾家家居发展大事记与里程碑。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-15T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-16T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_2",
-      "employeeId": "u2",
-      "day": 2,
-      "date": "2026-07-16",
-      "status": "approved",
-      "actualDuration": 78,
-      "requiredDuration": 60,
-      "summary": "今日学习了企业文化与核心价值观，重点掌握了品牌理念与企业文化体系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-16T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-17T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_3",
-      "employeeId": "u2",
-      "day": 3,
-      "date": "2026-07-17",
-      "status": "approved",
-      "actualDuration": 58,
-      "requiredDuration": 45,
-      "summary": "今日学习了组织架构与部门职能，重点掌握了公司组织架构图与汇报关系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-17T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-18T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_4",
-      "employeeId": "u2",
-      "day": 4,
-      "date": "2026-07-18",
-      "status": "rejected",
-      "actualDuration": 81,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 沙发品类，重点掌握了沙发产品系列与定位。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-18T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-19T00:00:00.000Z",
-      "reviewComment": "总结不够具体，请补充实际案例。"
-    },
-    {
-      "id": "lr_u2_5",
-      "employeeId": "u2",
-      "day": 5,
-      "date": "2026-07-19",
-      "status": "approved",
-      "actualDuration": 108,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 软床与床垫，重点掌握了软床产品系列与风格。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-19T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-20T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_6",
-      "employeeId": "u2",
-      "day": 6,
-      "date": "2026-07-20",
-      "status": "approved",
-      "actualDuration": 91,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 全屋定制，重点掌握了全屋定制业务模式。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-20T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-21T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_7",
-      "employeeId": "u2",
-      "day": 7,
-      "date": "2026-07-21",
-      "status": "approved",
-      "actualDuration": 72,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店运营基础流程，重点掌握了门店日常运营SOP。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-21T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-22T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_8",
-      "employeeId": "u2",
-      "day": 8,
-      "date": "2026-07-22",
-      "status": "approved",
-      "actualDuration": 62,
-      "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-22T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-23T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_9",
-      "employeeId": "u2",
-      "day": 9,
-      "date": "2026-07-23",
-      "status": "approved",
-      "actualDuration": 84,
-      "requiredDuration": 90,
-      "summary": "今日学习了销售流程与成交技巧，重点掌握了销售漏斗与转化管理。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-23T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-24T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_10",
-      "employeeId": "u2",
-      "day": 10,
-      "date": "2026-07-24",
-      "status": "approved",
-      "actualDuration": 82,
-      "requiredDuration": 75,
-      "summary": "今日学习了数字化工具使用培训，重点掌握了ERP系统基础操作。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-24T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-25T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_11",
-      "employeeId": "u2",
-      "day": 11,
-      "date": "2026-07-25",
-      "status": "approved",
-      "actualDuration": 78,
-      "requiredDuration": 60,
-      "summary": "今日学习了订单管理与交付流程，重点掌握了订单录入与审核流程。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-25T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-26T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继��加油！"
-    },
-    {
-      "id": "lr_u2_12",
-      "employeeId": "u2",
-      "day": 12,
-      "date": "2026-07-26",
-      "status": "approved",
-      "actualDuration": 69,
-      "requiredDuration": 60,
-      "summary": "今日学习了售后服务与客诉处理，重点掌握了售后服务标准与响应时效。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-26T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-27T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u2_13",
       "employeeId": "u2",
-      "day": 13,
+      "day": 1,
       "date": "2026-07-27",
       "status": "approved",
       "actualDuration": 87,
@@ -1036,7 +556,7 @@
     {
       "id": "lr_u2_14",
       "employeeId": "u2",
-      "day": 14,
+      "day": 2,
       "date": "2026-07-28",
       "status": "approved",
       "actualDuration": 58,
@@ -1050,7 +570,7 @@
     {
       "id": "lr_u2_15",
       "employeeId": "u2",
-      "day": 15,
+      "day": 3,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 98,
@@ -1064,7 +584,7 @@
     {
       "id": "lr_u2_16",
       "employeeId": "u2",
-      "day": 16,
+      "day": 4,
       "date": "2026-07-30",
       "status": "approved",
       "actualDuration": 101,
@@ -1078,7 +598,7 @@
     {
       "id": "lr_u2_17",
       "employeeId": "u2",
-      "day": 17,
+      "day": 5,
       "date": "2026-07-31",
       "status": "approved",
       "actualDuration": 59,
@@ -1092,7 +612,7 @@
     {
       "id": "lr_u2_18",
       "employeeId": "u2",
-      "day": 18,
+      "day": 6,
       "date": "2026-08-01",
       "status": "approved",
       "actualDuration": 52,
@@ -1106,7 +626,7 @@
     {
       "id": "lr_u2_19",
       "employeeId": "u2",
-      "day": 19,
+      "day": 7,
       "date": "2026-08-02",
       "status": "rejected",
       "actualDuration": 40,
@@ -1120,7 +640,7 @@
     {
       "id": "lr_u2_20",
       "employeeId": "u2",
-      "day": 20,
+      "day": 8,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 60,
@@ -1134,7 +654,7 @@
     {
       "id": "lr_u2_21",
       "employeeId": "u2",
-      "day": 21,
+      "day": 9,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 137,
@@ -1148,7 +668,7 @@
     {
       "id": "lr_u2_22",
       "employeeId": "u2",
-      "day": 22,
+      "day": 10,
       "date": "2026-08-05",
       "status": "rejected",
       "actualDuration": 117,
@@ -1162,7 +682,7 @@
     {
       "id": "lr_u2_23",
       "employeeId": "u2",
-      "day": 23,
+      "day": 11,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 116,
@@ -1176,7 +696,7 @@
     {
       "id": "lr_u2_24",
       "employeeId": "u2",
-      "day": 24,
+      "day": 12,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 81,
@@ -1190,7 +710,7 @@
     {
       "id": "lr_u2_25",
       "employeeId": "u2",
-      "day": 25,
+      "day": 13,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 198,
@@ -1204,7 +724,7 @@
     {
       "id": "lr_u2_26",
       "employeeId": "u2",
-      "day": 26,
+      "day": 14,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 78,
@@ -1218,7 +738,7 @@
     {
       "id": "lr_u2_27",
       "employeeId": "u2",
-      "day": 27,
+      "day": 15,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 81,
@@ -1232,7 +752,7 @@
     {
       "id": "lr_u2_28",
       "employeeId": "u2",
-      "day": 28,
+      "day": 16,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 96,
@@ -1246,7 +766,7 @@
     {
       "id": "lr_u2_29",
       "employeeId": "u2",
-      "day": 29,
+      "day": 17,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 104,
@@ -1258,7 +778,7 @@
     {
       "id": "lr_u2_30",
       "employeeId": "u2",
-      "day": 30,
+      "day": 18,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -1268,177 +788,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u3_1",
-      "employeeId": "u3",
-      "day": 1,
-      "date": "2026-07-20",
-      "status": "approved",
-      "actualDuration": 67,
-      "requiredDuration": 60,
-      "summary": "今日学习了公司简介与发展历程，重点掌握了顾家家居发展大事记与里程碑。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-20T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-21T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_2",
-      "employeeId": "u3",
-      "day": 2,
-      "date": "2026-07-21",
-      "status": "approved",
-      "actualDuration": 71,
-      "requiredDuration": 60,
-      "summary": "今日学习了企业文化与核心价值观，重点掌握了品牌理念与企业文化体系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-21T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-22T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_3",
-      "employeeId": "u3",
-      "day": 3,
-      "date": "2026-07-22",
-      "status": "approved",
-      "actualDuration": 41,
-      "requiredDuration": 45,
-      "summary": "今日学习了组织架构与部门职能，重点掌握了公司组织架构图与汇报关系。通过学习，我对企业文化有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-22T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-23T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_4",
-      "employeeId": "u3",
-      "day": 4,
-      "date": "2026-07-23",
-      "status": "approved",
-      "actualDuration": 106,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 沙发品类，重点掌握了沙发产品系列与定位。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-23T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-24T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_5",
-      "employeeId": "u3",
-      "day": 5,
-      "date": "2026-07-24",
-      "status": "approved",
-      "actualDuration": 81,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 软床与床垫，重点掌握了软床产品系列与风格。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-24T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-25T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_6",
-      "employeeId": "u3",
-      "day": 6,
-      "date": "2026-07-25",
-      "status": "approved",
-      "actualDuration": 87,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品体系总览 — 全屋定制，重点掌握了全屋定制业务模式。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-25T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-26T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_7",
-      "employeeId": "u3",
-      "day": 7,
-      "date": "2026-07-26",
-      "status": "approved",
-      "actualDuration": 65,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店运营基础流程，重点掌握了门店日常运营SOP。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-26T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-27T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_8",
-      "employeeId": "u3",
-      "day": 8,
-      "date": "2026-07-27",
-      "status": "approved",
-      "actualDuration": 75,
-      "requiredDuration": 60,
-      "summary": "今日学习了客户服务与沟通技巧，重点掌握了客户接待礼仪与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-27T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-28T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_9",
-      "employeeId": "u3",
-      "day": 9,
-      "date": "2026-07-28",
-      "status": "approved",
-      "actualDuration": 109,
-      "requiredDuration": 90,
-      "summary": "今日学习了销售流程与成交技巧，重点掌握了销售漏斗与转化管理。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-28T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-29T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_10",
-      "employeeId": "u3",
-      "day": 10,
-      "date": "2026-07-29",
-      "status": "approved",
-      "actualDuration": 65,
-      "requiredDuration": 75,
-      "summary": "今日学习了数字化工具使用培训，重点掌握了ERP系统基础操作。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-29T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-30T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_11",
-      "employeeId": "u3",
-      "day": 11,
-      "date": "2026-07-30",
-      "status": "approved",
-      "actualDuration": 66,
-      "requiredDuration": 60,
-      "summary": "今日学习了订单管理与交付流程，重点掌握了订单录入与审核流程。通过学习，我对系统操作有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-30T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-07-31T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_12",
-      "employeeId": "u3",
-      "day": 12,
-      "date": "2026-07-31",
-      "status": "rejected",
-      "actualDuration": 60,
-      "requiredDuration": 60,
-      "summary": "今日学习了售后服务与客诉处理，重点掌握了售后服务标准与响应时效。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-31T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-01T00:00:00.000Z",
-      "reviewComment": "总结不够具体，请补充实际案例。"
-    },
-    {
       "id": "lr_u3_13",
       "employeeId": "u3",
-      "day": 13,
+      "day": 1,
       "date": "2026-08-01",
       "status": "approved",
       "actualDuration": 69,
@@ -1452,7 +804,7 @@
     {
       "id": "lr_u3_14",
       "employeeId": "u3",
-      "day": 14,
+      "day": 2,
       "date": "2026-08-02",
       "status": "rejected",
       "actualDuration": 69,
@@ -1466,7 +818,7 @@
     {
       "id": "lr_u3_15",
       "employeeId": "u3",
-      "day": 15,
+      "day": 3,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 94,
@@ -1480,7 +832,7 @@
     {
       "id": "lr_u3_16",
       "employeeId": "u3",
-      "day": 16,
+      "day": 4,
       "date": "2026-08-04",
       "status": "rejected",
       "actualDuration": 91,
@@ -1494,7 +846,7 @@
     {
       "id": "lr_u3_17",
       "employeeId": "u3",
-      "day": 17,
+      "day": 5,
       "date": "2026-08-05",
       "status": "approved",
       "actualDuration": 58,
@@ -1508,7 +860,7 @@
     {
       "id": "lr_u3_18",
       "employeeId": "u3",
-      "day": 18,
+      "day": 6,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 65,
@@ -1522,7 +874,7 @@
     {
       "id": "lr_u3_19",
       "employeeId": "u3",
-      "day": 19,
+      "day": 7,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 64,
@@ -1536,7 +888,7 @@
     {
       "id": "lr_u3_20",
       "employeeId": "u3",
-      "day": 20,
+      "day": 8,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 59,
@@ -1550,7 +902,7 @@
     {
       "id": "lr_u3_21",
       "employeeId": "u3",
-      "day": 21,
+      "day": 9,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 120,
@@ -1564,7 +916,7 @@
     {
       "id": "lr_u3_22",
       "employeeId": "u3",
-      "day": 22,
+      "day": 10,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 126,
@@ -1578,7 +930,7 @@
     {
       "id": "lr_u3_23",
       "employeeId": "u3",
-      "day": 23,
+      "day": 11,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 117,
@@ -1592,7 +944,7 @@
     {
       "id": "lr_u3_24",
       "employeeId": "u3",
-      "day": 24,
+      "day": 12,
       "date": "2026-08-12",
       "status": "approved",
       "actualDuration": 94,
@@ -1606,7 +958,7 @@
     {
       "id": "lr_u3_25",
       "employeeId": "u3",
-      "day": 25,
+      "day": 13,
       "date": "2026-08-13",
       "status": "submitted",
       "actualDuration": 187,
@@ -1618,27 +970,13 @@
     {
       "id": "lr_u3_26",
       "employeeId": "u3",
-      "day": 26,
+      "day": 14,
       "date": "2026-08-14",
       "status": "pending",
       "actualDuration": 0,
       "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
-      "reviewComment": ""
-    },
-    {
-      "id": "lr_u1786699324044_1",
-      "employeeId": "u1786699324044",
-      "day": 1,
-      "date": "2026-08-14",
-      "status": "studying",
-      "actualDuration": 0,
-      "requiredDuration": 60,
-      "summary": "",
-      "submittedAt": null,
-      "reviewedBy": null,
-      "reviewedAt": null,
       "reviewComment": ""
     }
   ],
