@@ -1,17 +1,6 @@
 {
   "users": [
     {
-      "id": "u1",
-      "name": "陈思雨",
-      "role": "employee",
-      "dept": "门店运营中心",
-      "position": "导购员",
-      "mentorId": "u4",
-      "joinDate": "2026-07-15",
-      "avatarColor": "#2563eb",
-      "loginToken": "gkjj_u1_2026"
-    },
-    {
       "id": "u2",
       "name": "王浩然",
       "role": "employee",
@@ -134,15 +123,6 @@
       "employeeId": "u2",
       "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
       "sentAt": "2026-08-14T09:59:53.426Z",
-      "sentBy": "u6",
-      "progressPercent": 83,
-      "read": false
-    },
-    {
-      "id": "rm_1786701596515",
-      "employeeId": "u1",
-      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:56.515Z",
       "sentBy": "u6",
       "progressPercent": 83,
       "read": false
