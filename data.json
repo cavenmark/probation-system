@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "id": "u4",
-      "name": "赵明辉",
-      "role": "mentor",
-      "dept": "门店运营中心",
-      "position": "资深店长",
-      "avatarColor": "#16a34a",
-      "loginToken": "gkjj_u4_2026"
-    },
-    {
       "id": "u5",
       "name": "刘佳琪",
       "role": "mentor",
@@ -35,7 +26,7 @@
       "position": "迟翔中",
       "avatarColor": "#2563eb",
       "loginToken": "lt_u1786699324044_ts1dhb28",
-      "mentorId": "u4",
+      "mentorId": null,
       "joinDate": "2026-08-14"
     }
   ],
