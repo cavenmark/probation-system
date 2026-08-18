@@ -1,28 +1,6 @@
 {
   "users": [
     {
-      "id": "u2",
-      "name": "王浩然",
-      "role": "employee",
-      "dept": "门店运营中心",
-      "position": "导购员",
-      "mentorId": "u4",
-      "joinDate": "2026-07-15",
-      "avatarColor": "#0891b2",
-      "loginToken": "gkjj_u2_2026"
-    },
-    {
-      "id": "u3",
-      "name": "林晓彤",
-      "role": "employee",
-      "dept": "全屋定制中心",
-      "position": "设计顾问",
-      "mentorId": "u5",
-      "joinDate": "2026-07-20",
-      "avatarColor": "#7c3aed",
-      "loginToken": "gkjj_u3_2026"
-    },
-    {
       "id": "u4",
       "name": "赵明辉",
       "role": "mentor",
@@ -108,24 +86,6 @@
       "sentBy": "u6",
       "progressPercent": 0,
       "read": true
-    },
-    {
-      "id": "rm_1786701588214",
-      "employeeId": "u3",
-      "message": "您当前的学习进度为 70%（已完成21天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:48.214Z",
-      "sentBy": "u6",
-      "progressPercent": 70,
-      "read": false
-    },
-    {
-      "id": "rm_1786701593426",
-      "employeeId": "u2",
-      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:53.426Z",
-      "sentBy": "u6",
-      "progressPercent": 83,
-      "read": false
     }
   ],
   "settings": {
