@@ -72,46 +72,8 @@
       "joinDate": "2026-08-14"
     }
   ],
-  "plan": [
-    {
-      "day": 1,
-      "title": "转正答辩与评估",
-      "category": "考核评估",
-      "duration": 120,
-      "content": "进行正式转正答辩，由带教老师、店长、HR共同评估，确定转正结果。",
-      "points": [
-        "正式转正答辩",
-        "多维评估打分",
-        "转正结果沟通与反馈"
-      ]
-    }
-  ],
-  "records": [
-    {
-      "id": "lr_u1_30",
-      "employeeId": "u1",
-      "day": 1,
-      "date": "2026-08-13",
-      "status": "pending",
-      "actualDuration": 0,
-      "requiredDuration": 120,
-      "summary": "",
-      "submittedAt": null,
-      "reviewComment": ""
-    },
-    {
-      "id": "lr_u2_30",
-      "employeeId": "u2",
-      "day": 1,
-      "date": "2026-08-13",
-      "status": "pending",
-      "actualDuration": 0,
-      "requiredDuration": 120,
-      "summary": "",
-      "submittedAt": null,
-      "reviewComment": ""
-    }
-  ],
+  "plan": [],
+  "records": [],
   "reminders": [
     {
       "id": "rm_1786699387914",
