@@ -75,174 +75,6 @@
   "plan": [
     {
       "day": 1,
-      "title": "公司简介与发展历程",
-      "category": "企业文化",
-      "duration": 60,
-      "content": "了解顾家家居自2003年创立以来的发展历程、上市历程、全球化布局，理解企业愿景与使命。",
-      "points": [
-        "顾家家居发展大事记与里程碑",
-        "企业愿景、使命、价值观",
-        "全球化战略与市场布局"
-      ]
-    },
-    {
-      "day": 2,
-      "title": "企业文化与核心价值观",
-      "category": "企业文化",
-      "duration": 60,
-      "content": "深入学习顾家家居\"因爱而生\"的品牌理念，理解企业精神与行为准则，树立正确的职业态度。",
-      "points": [
-        "品牌理念与企业文化体系",
-        "员工行为准则与职业素养",
-        "企业社会责任实践"
-      ]
-    },
-    {
-      "day": 3,
-      "title": "组织架构与部门职能",
-      "category": "企业文化",
-      "duration": 45,
-      "content": "熟悉公司整体组织架构，了解各中心/部门的职能定位与协作关系，明确自身岗位在组织中的位置。",
-      "points": [
-        "公司组织架构图与汇报关系",
-        "各中心/部门职能说明",
-        "跨部门协作流程"
-      ]
-    },
-    {
-      "day": 4,
-      "title": "产品体系总览 — 沙发品类",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "系统学习顾家沙发产品线，包括功能沙发、布艺沙发、真皮沙发等系列，了解材质工艺与价格区间。",
-      "points": [
-        "沙发产品系列与定位",
-        "材质工艺（真皮/布艺/科技布）",
-        "价格体系与目标客群"
-      ]
-    },
-    {
-      "day": 5,
-      "title": "产品体系总览 — 软床与床垫",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "学习顾家软床及床垫产品线，了解人体工学设计、材质特点及核心卖点。",
-      "points": [
-        "软床产品系列与风格",
-        "床垫材质与人体工学设计",
-        "核心卖点与竞品对比"
-      ]
-    },
-    {
-      "day": 6,
-      "title": "产品体系总览 — 全屋定制",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "了解顾家全屋定制业务模式，学习定制衣柜、橱柜等产品体系及设计流程。",
-      "points": [
-        "全屋定制业务模式",
-        "定制产品体系与工艺",
-        "设计流程与交付周期"
-      ]
-    },
-    {
-      "day": 7,
-      "title": "门店运营基础流程",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "学习门店日常运营标准流程，包括开店准备、客户接待、门店陈列维护等。",
-      "points": [
-        "门店日常运营SOP",
-        "门店陈列标准与维护",
-        "开店/闭店流程"
-      ]
-    },
-    {
-      "day": 8,
-      "title": "客户服务与沟通技巧",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "掌握客户接待礼仪与沟通话术，学习需求挖掘与客户关系维护技巧。",
-      "points": [
-        "客户接待礼仪与话术",
-        "需求挖掘技巧（FABE法则）",
-        "客户关系维护与回访"
-      ]
-    },
-    {
-      "day": 9,
-      "title": "销售流程与成交技巧",
-      "category": "门店运营",
-      "duration": 90,
-      "content": "学习完整销售流程，从获客到成交的全链路技巧，掌握异议处理与促单方法。",
-      "points": [
-        "销售漏斗与转化管理",
-        "异议处理技巧",
-        "促单与成交话术"
-      ]
-    },
-    {
-      "day": 10,
-      "title": "数字化工具使用培训",
-      "category": "系统操作",
-      "duration": 75,
-      "content": "学习公司内部系统操作，包括ERP、CRM、OA系统的基本功能与日常使用。",
-      "points": [
-        "ERP系统基础操作",
-        "CRM客户管理流程",
-        "OA审批与协同"
-      ]
-    },
-    {
-      "day": 11,
-      "title": "订单管理与交付流程",
-      "category": "系统操作",
-      "duration": 60,
-      "content": "了解从下单到交付的完整流程，掌握订单系统操作及异常处理。",
-      "points": [
-        "订单录入与审核流程",
-        "生产排期与物流配送",
-        "交付异常处理机制"
-      ]
-    },
-    {
-      "day": 12,
-      "title": "售后服务与客诉处理",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "学习售后服务标准与客诉处理流程，提升客户满意度与复购率。",
-      "points": [
-        "售后服务标准与响应时效",
-        "客诉分级处理流程",
-        "客户满意度提升策略"
-      ]
-    },
-    {
-      "day": 13,
-      "title": "竞品分析与市场洞察",
-      "category": "市场分析",
-      "duration": 75,
-      "content": "分析主要竞争对手的产品、价格、渠道策略，了解家居行业市场趋势。",
-      "points": [
-        "主要竞品对比分析",
-        "家居行业市场趋势",
-        "顾家差异化竞争优势"
-      ]
-    },
-    {
-      "day": 14,
-      "title": "门店数据分析基础",
-      "category": "市场分析",
-      "duration": 60,
-      "content": "学习门店关键经营指标（进店率、转化率、客单价、连带率）及数据驱动决策方法。",
-      "points": [
-        "核心经营指标解读",
-        "数据看板使用方法",
-        "数据驱动改善案例"
-      ]
-    },
-    {
-      "day": 15,
       "title": "阶段性考核 — 前两周复盘",
       "category": "考核评估",
       "duration": 90,
@@ -254,43 +86,7 @@
       ]
     },
     {
-      "day": 16,
-      "title": "产品搭配与全屋方案设计",
-      "category": "产品知识",
-      "duration": 90,
-      "content": "学习不同风格的全屋产品搭配方案，掌握方案设计与呈现技巧。",
-      "points": [
-        "主流家装风格与搭配",
-        "全屋方案设计方法",
-        "方案呈现与讲解技巧"
-      ]
-    },
-    {
-      "day": 17,
-      "title": "促销活动与营销执行",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "了解门店促销活动类型与执行流程，学习活动方案策划与落地。",
-      "points": [
-        "促销活动类型与节奏",
-        "活动方案策划要点",
-        "活动执行与复盘"
-      ]
-    },
-    {
-      "day": 18,
-      "title": "VIP客户管理与服务",
-      "category": "门店运营",
-      "duration": 60,
-      "content": "学习VIP客户分级管理体系，掌握高价值客户的维护与深度开发技巧。",
-      "points": [
-        "VIP客户分级标准",
-        "专属服务权益设计",
-        "高价值客户深度开发"
-      ]
-    },
-    {
-      "day": 19,
+      "day": 2,
       "title": "团队协作与门店会议",
       "category": "综合素养",
       "duration": 45,
@@ -302,7 +98,7 @@
       ]
     },
     {
-      "day": 20,
+      "day": 3,
       "title": "职业发展规划与晋升路径",
       "category": "综合素养",
       "duration": 45,
@@ -314,7 +110,7 @@
       ]
     },
     {
-      "day": 21,
+      "day": 4,
       "title": "门店实操 — 客户接待模拟",
       "category": "实操演练",
       "duration": 120,
@@ -326,7 +122,7 @@
       ]
     },
     {
-      "day": 22,
+      "day": 5,
       "title": "门店实操 — 产品讲解演练",
       "category": "实操演练",
       "duration": 120,
@@ -338,7 +134,7 @@
       ]
     },
     {
-      "day": 23,
+      "day": 6,
       "title": "门店实操 — 异议处理与促单",
       "category": "实操演练",
       "duration": 120,
@@ -350,7 +146,7 @@
       ]
     },
     {
-      "day": 24,
+      "day": 7,
       "title": "门店实操 — 订单录入与交付",
       "category": "实操演练",
       "duration": 90,
@@ -362,7 +158,7 @@
       ]
     },
     {
-      "day": 25,
+      "day": 8,
       "title": "门店实操 — 独立接待考核",
       "category": "实操演练",
       "duration": 180,
@@ -374,7 +170,7 @@
       ]
     },
     {
-      "day": 26,
+      "day": 9,
       "title": "客户回访与关系维护",
       "category": "门店运营",
       "duration": 60,
@@ -386,7 +182,7 @@
       ]
     },
     {
-      "day": 27,
+      "day": 10,
       "title": "门店经营数据分析实操",
       "category": "市场分析",
       "duration": 75,
@@ -398,7 +194,7 @@
       ]
     },
     {
-      "day": 28,
+      "day": 11,
       "title": "试用期总结撰写",
       "category": "考核评估",
       "duration": 90,
@@ -410,7 +206,7 @@
       ]
     },
     {
-      "day": 29,
+      "day": 12,
       "title": "转正答辩准备",
       "category": "考核评估",
       "duration": 90,
@@ -422,7 +218,7 @@
       ]
     },
     {
-      "day": 30,
+      "day": 13,
       "title": "转正答辩与评估",
       "category": "考核评估",
       "duration": 120,
@@ -436,23 +232,9 @@
   ],
   "records": [
     {
-      "id": "lr_u1_14",
-      "employeeId": "u1",
-      "day": 1,
-      "date": "2026-07-28",
-      "status": "approved",
-      "actualDuration": 67,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店数据分析基础，重点掌握了核心经营指标解读。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-28T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-29T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u1_15",
       "employeeId": "u1",
-      "day": 2,
+      "day": 1,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 89,
@@ -464,51 +246,9 @@
       "reviewComment": "总结认真，理解到位，继续加油！"
     },
     {
-      "id": "lr_u1_16",
-      "employeeId": "u1",
-      "day": 3,
-      "date": "2026-07-30",
-      "status": "approved",
-      "actualDuration": 94,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品搭配与全屋方案设计，重点掌握了主流家装风格与搭配。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-30T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-31T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_17",
-      "employeeId": "u1",
-      "day": 4,
-      "date": "2026-07-31",
-      "status": "approved",
-      "actualDuration": 56,
-      "requiredDuration": 60,
-      "summary": "今日学习了促销活动与营销执行，重点掌握了促销活动类型与节奏。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-31T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-01T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u1_18",
-      "employeeId": "u1",
-      "day": 5,
-      "date": "2026-08-01",
-      "status": "approved",
-      "actualDuration": 54,
-      "requiredDuration": 60,
-      "summary": "今日学习了VIP客户管理与服务，重点掌握了VIP客户分级标准。通过学习，我对门店运营有了更深���的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-01T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-02T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u1_19",
       "employeeId": "u1",
-      "day": 6,
+      "day": 2,
       "date": "2026-08-02",
       "status": "approved",
       "actualDuration": 48,
@@ -522,7 +262,7 @@
     {
       "id": "lr_u1_20",
       "employeeId": "u1",
-      "day": 7,
+      "day": 3,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 58,
@@ -536,7 +276,7 @@
     {
       "id": "lr_u1_21",
       "employeeId": "u1",
-      "day": 8,
+      "day": 4,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 135,
@@ -550,7 +290,7 @@
     {
       "id": "lr_u1_22",
       "employeeId": "u1",
-      "day": 9,
+      "day": 5,
       "date": "2026-08-05",
       "status": "approved",
       "actualDuration": 135,
@@ -564,7 +304,7 @@
     {
       "id": "lr_u1_23",
       "employeeId": "u1",
-      "day": 10,
+      "day": 6,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 131,
@@ -578,7 +318,7 @@
     {
       "id": "lr_u1_24",
       "employeeId": "u1",
-      "day": 11,
+      "day": 7,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 97,
@@ -592,7 +332,7 @@
     {
       "id": "lr_u1_25",
       "employeeId": "u1",
-      "day": 12,
+      "day": 8,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 199,
@@ -606,7 +346,7 @@
     {
       "id": "lr_u1_26",
       "employeeId": "u1",
-      "day": 13,
+      "day": 9,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 67,
@@ -620,7 +360,7 @@
     {
       "id": "lr_u1_27",
       "employeeId": "u1",
-      "day": 14,
+      "day": 10,
       "date": "2026-08-10",
       "status": "submitted",
       "actualDuration": 84,
@@ -634,7 +374,7 @@
     {
       "id": "lr_u1_28",
       "employeeId": "u1",
-      "day": 15,
+      "day": 11,
       "date": "2026-08-11",
       "status": "submitted",
       "actualDuration": 109,
@@ -648,7 +388,7 @@
     {
       "id": "lr_u1_29",
       "employeeId": "u1",
-      "day": 16,
+      "day": 12,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 108,
@@ -660,33 +400,19 @@
     {
       "id": "lr_u1_30",
       "employeeId": "u1",
-      "day": 17,
+      "day": 13,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
-      "requiredDuration": 60,
+      "requiredDuration": 120,
       "summary": "",
       "submittedAt": null,
       "reviewComment": ""
     },
     {
-      "id": "lr_u2_14",
-      "employeeId": "u2",
-      "day": 1,
-      "date": "2026-07-28",
-      "status": "approved",
-      "actualDuration": 58,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店数据分析基础，重点掌握了核心经营指标解读��通过学习，��对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-28T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-29T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u2_15",
       "employeeId": "u2",
-      "day": 2,
+      "day": 1,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 98,
@@ -698,51 +424,9 @@
       "reviewComment": "总结认真，理解到位，继续加油！"
     },
     {
-      "id": "lr_u2_16",
-      "employeeId": "u2",
-      "day": 3,
-      "date": "2026-07-30",
-      "status": "approved",
-      "actualDuration": 101,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品搭配与全屋方案设计，重点掌握了主流家装风格与搭配。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-30T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-31T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_17",
-      "employeeId": "u2",
-      "day": 4,
-      "date": "2026-07-31",
-      "status": "approved",
-      "actualDuration": 59,
-      "requiredDuration": 60,
-      "summary": "今日学习了促销活动与营销执行，重点掌握了促销活动类型与节奏。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-31T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-01T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u2_18",
-      "employeeId": "u2",
-      "day": 5,
-      "date": "2026-08-01",
-      "status": "approved",
-      "actualDuration": 52,
-      "requiredDuration": 60,
-      "summary": "今日学习了VIP客户管理与服务，重点掌握了VIP客户分级标准。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-01T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-08-02T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u2_19",
       "employeeId": "u2",
-      "day": 6,
+      "day": 2,
       "date": "2026-08-02",
       "status": "rejected",
       "actualDuration": 40,
@@ -756,7 +440,7 @@
     {
       "id": "lr_u2_20",
       "employeeId": "u2",
-      "day": 7,
+      "day": 3,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 60,
@@ -770,7 +454,7 @@
     {
       "id": "lr_u2_21",
       "employeeId": "u2",
-      "day": 8,
+      "day": 4,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 137,
@@ -784,7 +468,7 @@
     {
       "id": "lr_u2_22",
       "employeeId": "u2",
-      "day": 9,
+      "day": 5,
       "date": "2026-08-05",
       "status": "rejected",
       "actualDuration": 117,
@@ -798,7 +482,7 @@
     {
       "id": "lr_u2_23",
       "employeeId": "u2",
-      "day": 10,
+      "day": 6,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 116,
@@ -812,7 +496,7 @@
     {
       "id": "lr_u2_24",
       "employeeId": "u2",
-      "day": 11,
+      "day": 7,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 81,
@@ -826,7 +510,7 @@
     {
       "id": "lr_u2_25",
       "employeeId": "u2",
-      "day": 12,
+      "day": 8,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 198,
@@ -840,7 +524,7 @@
     {
       "id": "lr_u2_26",
       "employeeId": "u2",
-      "day": 13,
+      "day": 9,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 78,
@@ -854,7 +538,7 @@
     {
       "id": "lr_u2_27",
       "employeeId": "u2",
-      "day": 14,
+      "day": 10,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 81,
@@ -868,7 +552,7 @@
     {
       "id": "lr_u2_28",
       "employeeId": "u2",
-      "day": 15,
+      "day": 11,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 96,
@@ -882,7 +566,7 @@
     {
       "id": "lr_u2_29",
       "employeeId": "u2",
-      "day": 16,
+      "day": 12,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 104,
@@ -894,33 +578,19 @@
     {
       "id": "lr_u2_30",
       "employeeId": "u2",
-      "day": 17,
+      "day": 13,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
-      "requiredDuration": 60,
+      "requiredDuration": 120,
       "summary": "",
       "submittedAt": null,
       "reviewComment": ""
     },
     {
-      "id": "lr_u3_14",
-      "employeeId": "u3",
-      "day": 1,
-      "date": "2026-08-02",
-      "status": "rejected",
-      "actualDuration": 69,
-      "requiredDuration": 60,
-      "summary": "今日学习了门店数据分析基础，重点掌握了核心经营指标解读。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-02T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-03T00:00:00.000Z",
-      "reviewComment": "总结不够具体，请补充实际案例。"
-    },
-    {
       "id": "lr_u3_15",
       "employeeId": "u3",
-      "day": 2,
+      "day": 1,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 94,
@@ -932,51 +602,9 @@
       "reviewComment": "总结认真，理解到位，继续加油！"
     },
     {
-      "id": "lr_u3_16",
-      "employeeId": "u3",
-      "day": 3,
-      "date": "2026-08-04",
-      "status": "rejected",
-      "actualDuration": 91,
-      "requiredDuration": 90,
-      "summary": "今日学习了产品搭配与全屋方案设计，重点掌握了主流家装风格与搭配。通过学习，我对产品知识有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-04T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-05T00:00:00.000Z",
-      "reviewComment": "总结不够具体，请补充实际案例。"
-    },
-    {
-      "id": "lr_u3_17",
-      "employeeId": "u3",
-      "day": 4,
-      "date": "2026-08-05",
-      "status": "approved",
-      "actualDuration": 58,
-      "requiredDuration": 60,
-      "summary": "今日学习了促销活动与营销执行，重点掌握了促销活动类型与节奏。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-05T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-06T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
-      "id": "lr_u3_18",
-      "employeeId": "u3",
-      "day": 5,
-      "date": "2026-08-06",
-      "status": "approved",
-      "actualDuration": 65,
-      "requiredDuration": 60,
-      "summary": "今日学习了VIP客户管理与服务，重点掌握了VIP客户分级标准。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-06T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-07T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u3_19",
       "employeeId": "u3",
-      "day": 6,
+      "day": 2,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 64,
@@ -990,7 +618,7 @@
     {
       "id": "lr_u3_20",
       "employeeId": "u3",
-      "day": 7,
+      "day": 3,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 59,
@@ -1004,7 +632,7 @@
     {
       "id": "lr_u3_21",
       "employeeId": "u3",
-      "day": 8,
+      "day": 4,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 120,
@@ -1018,7 +646,7 @@
     {
       "id": "lr_u3_22",
       "employeeId": "u3",
-      "day": 9,
+      "day": 5,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 126,
@@ -1032,7 +660,7 @@
     {
       "id": "lr_u3_23",
       "employeeId": "u3",
-      "day": 10,
+      "day": 6,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 117,
@@ -1046,7 +674,7 @@
     {
       "id": "lr_u3_24",
       "employeeId": "u3",
-      "day": 11,
+      "day": 7,
       "date": "2026-08-12",
       "status": "approved",
       "actualDuration": 94,
@@ -1060,7 +688,7 @@
     {
       "id": "lr_u3_25",
       "employeeId": "u3",
-      "day": 12,
+      "day": 8,
       "date": "2026-08-13",
       "status": "submitted",
       "actualDuration": 187,
@@ -1072,11 +700,11 @@
     {
       "id": "lr_u3_26",
       "employeeId": "u3",
-      "day": 13,
+      "day": 9,
       "date": "2026-08-14",
       "status": "pending",
       "actualDuration": 0,
-      "requiredDuration": 75,
+      "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
       "reviewComment": ""
@@ -1084,55 +712,10 @@
   ],
   "reminders": [
     {
-      "id": "rm_1786701596515",
-      "employeeId": "u1",
-      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:56.515Z",
-      "sentBy": "u6",
-      "progressPercent": 83,
-      "read": false
-    },
-    {
-      "id": "rm_1786701593426",
-      "employeeId": "u2",
-      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:53.426Z",
-      "sentBy": "u6",
-      "progressPercent": 83,
-      "read": false
-    },
-    {
-      "id": "rm_1786701588214",
-      "employeeId": "u3",
-      "message": "您当前的学习进度为 70%（已完成21天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:48.214Z",
-      "sentBy": "u6",
-      "progressPercent": 70,
-      "read": false
-    },
-    {
-      "id": "rm_1786701585986",
+      "id": "rm_1786699387914",
       "employeeId": "u1786699324044",
       "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:45.986Z",
-      "sentBy": "u6",
-      "progressPercent": 0,
-      "read": true
-    },
-    {
-      "id": "rm_1786701567508",
-      "employeeId": "u1786699324044",
-      "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:59:27.508Z",
-      "sentBy": "u6",
-      "progressPercent": 0,
-      "read": true
-    },
-    {
-      "id": "rm_1786700350171",
-      "employeeId": "u1786699324044",
-      "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:39:10.171Z",
+      "sentAt": "2026-08-14T09:23:07.914Z",
       "sentBy": "u6",
       "progressPercent": 0,
       "read": true
@@ -1147,13 +730,58 @@
       "read": true
     },
     {
-      "id": "rm_1786699387914",
+      "id": "rm_1786700350171",
       "employeeId": "u1786699324044",
       "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
-      "sentAt": "2026-08-14T09:23:07.914Z",
+      "sentAt": "2026-08-14T09:39:10.171Z",
       "sentBy": "u6",
       "progressPercent": 0,
       "read": true
+    },
+    {
+      "id": "rm_1786701567508",
+      "employeeId": "u1786699324044",
+      "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:59:27.508Z",
+      "sentBy": "u6",
+      "progressPercent": 0,
+      "read": true
+    },
+    {
+      "id": "rm_1786701585986",
+      "employeeId": "u1786699324044",
+      "message": "您当前的学习进度为 0%（已完成0天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:59:45.986Z",
+      "sentBy": "u6",
+      "progressPercent": 0,
+      "read": true
+    },
+    {
+      "id": "rm_1786701588214",
+      "employeeId": "u3",
+      "message": "您当前的学习进度为 70%（已完成21天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:59:48.214Z",
+      "sentBy": "u6",
+      "progressPercent": 70,
+      "read": false
+    },
+    {
+      "id": "rm_1786701593426",
+      "employeeId": "u2",
+      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:59:53.426Z",
+      "sentBy": "u6",
+      "progressPercent": 83,
+      "read": false
+    },
+    {
+      "id": "rm_1786701596515",
+      "employeeId": "u1",
+      "message": "您当前的学习进度为 83%（已完成25天），低于预期进度，请尽快完成学习任务并提交学习总结。",
+      "sentAt": "2026-08-14T09:59:56.515Z",
+      "sentBy": "u6",
+      "progressPercent": 83,
+      "read": false
     }
   ],
   "settings": {
