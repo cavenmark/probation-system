@@ -75,6 +75,54 @@
   "plan": [
     {
       "day": 1,
+      "title": "客户回访与关系维护",
+      "category": "门店运营",
+      "duration": 60,
+      "content": "学习客户回访标准流程与话术，实操老客户回访并记录反馈。",
+      "points": [
+        "回访标准与话术",
+        "客户反馈记录与分析",
+        "复购与转介绍引导"
+      ]
+    },
+    {
+      "day": 2,
+      "title": "门店经营数据分析实操",
+      "category": "市场分析",
+      "duration": 75,
+      "content": "基于门店真实数据，分析经营状况并提出改善建议。",
+      "points": [
+        "门店数据看板实操",
+        "经营问题诊断",
+        "改善建议撰写"
+      ]
+    },
+    {
+      "day": 3,
+      "title": "试用期总结撰写",
+      "category": "考核评估",
+      "duration": 90,
+      "content": "系统梳理试用期学习成果与工作表现，撰写试用期总结报告。",
+      "points": [
+        "学习成果回顾与梳理",
+        "工作表现自评",
+        "不足与改进方向"
+      ]
+    },
+    {
+      "day": 4,
+      "title": "转正答辩准备",
+      "category": "考核评估",
+      "duration": 90,
+      "content": "准备转正答辩PPT，梳理亮点与成长，进行模拟答辩。",
+      "points": [
+        "答辩PPT结构与要点",
+        "个人亮点与案例梳理",
+        "模拟答辩与带教反馈"
+      ]
+    },
+    {
+      "day": 5,
       "title": "转正答辩与评估",
       "category": "考核评估",
       "duration": 120,
@@ -88,9 +136,63 @@
   ],
   "records": [
     {
-      "id": "lr_u1_30",
+      "id": "lr_u1_26",
       "employeeId": "u1",
       "day": 1,
+      "date": "2026-08-09",
+      "status": "approved",
+      "actualDuration": 67,
+      "requiredDuration": 60,
+      "summary": "今日学习了客户回访与关系维护，重点掌握了回访标准与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-09T00:00:00.000Z",
+      "reviewedBy": "u4",
+      "reviewedAt": "2026-08-10T00:00:00.000Z",
+      "reviewComment": "总结认真，理解到位，继续加油！"
+    },
+    {
+      "id": "lr_u1_27",
+      "employeeId": "u1",
+      "day": 2,
+      "date": "2026-08-10",
+      "status": "submitted",
+      "actualDuration": 84,
+      "requiredDuration": 75,
+      "summary": "今日学习了门店经营数据分析实操，重点掌握了门店数据看板实操。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-14T09:57:46.920Z",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1_28",
+      "employeeId": "u1",
+      "day": 3,
+      "date": "2026-08-11",
+      "status": "submitted",
+      "actualDuration": 109,
+      "requiredDuration": 90,
+      "summary": "今日学习了试用期总结撰写，重点掌握了学习成果回顾与梳理。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-14T09:57:48.494Z",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1_29",
+      "employeeId": "u1",
+      "day": 4,
+      "date": "2026-08-12",
+      "status": "submitted",
+      "actualDuration": 108,
+      "requiredDuration": 90,
+      "summary": "今天学习了转正答辩准备，内容包括准备转正答辩PPT，梳理亮点与成长，进行模拟答辩。...通过学习掌握了核心知识点，对日常工作有帮助。",
+      "submittedAt": "2026-08-12T00:00:00.000Z",
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u1_30",
+      "employeeId": "u1",
+      "day": 5,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -100,13 +202,79 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u2_30",
+      "id": "lr_u2_26",
       "employeeId": "u2",
       "day": 1,
+      "date": "2026-08-09",
+      "status": "approved",
+      "actualDuration": 78,
+      "requiredDuration": 60,
+      "summary": "今日学习了客户回访与关系维护，重点掌握了回访标准与话术。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-09T00:00:00.000Z",
+      "reviewedBy": "u4",
+      "reviewedAt": "2026-08-10T00:00:00.000Z",
+      "reviewComment": "总结认真，理解到位，继续加油！"
+    },
+    {
+      "id": "lr_u2_27",
+      "employeeId": "u2",
+      "day": 2,
+      "date": "2026-08-10",
+      "status": "approved",
+      "actualDuration": 81,
+      "requiredDuration": 75,
+      "summary": "今日学习了门店经营数据分析实操，重点掌握了门店数据看板实操。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-10T00:00:00.000Z",
+      "reviewedBy": "u4",
+      "reviewedAt": "2026-08-11T00:00:00.000Z",
+      "reviewComment": "总结认真，理解到位，继续加油！"
+    },
+    {
+      "id": "lr_u2_28",
+      "employeeId": "u2",
+      "day": 3,
+      "date": "2026-08-11",
+      "status": "approved",
+      "actualDuration": 96,
+      "requiredDuration": 90,
+      "summary": "今日学习了试用期总结撰写，重点掌握了学习成果回顾与梳理。通过学习，我对考核评估有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "submittedAt": "2026-08-11T00:00:00.000Z",
+      "reviewedBy": "u4",
+      "reviewedAt": "2026-08-12T00:00:00.000Z",
+      "reviewComment": "总结认真，理解到位，继续加油！"
+    },
+    {
+      "id": "lr_u2_29",
+      "employeeId": "u2",
+      "day": 4,
+      "date": "2026-08-12",
+      "status": "submitted",
+      "actualDuration": 104,
+      "requiredDuration": 90,
+      "summary": "今天学习了转正答辩准备，内容包括准备转正答辩PPT，梳理亮点与成长，进行模拟答辩。...通过学习掌握了核心知识点，对日常工作有帮助。",
+      "submittedAt": "2026-08-12T00:00:00.000Z",
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u2_30",
+      "employeeId": "u2",
+      "day": 5,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
       "requiredDuration": 120,
+      "summary": "",
+      "submittedAt": null,
+      "reviewComment": ""
+    },
+    {
+      "id": "lr_u3_26",
+      "employeeId": "u3",
+      "day": 1,
+      "date": "2026-08-14",
+      "status": "pending",
+      "actualDuration": 0,
+      "requiredDuration": 60,
       "summary": "",
       "submittedAt": null,
       "reviewComment": ""
