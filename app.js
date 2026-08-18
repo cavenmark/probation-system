@@ -322,6 +322,16 @@ const API = {
       settings: { trialDays: 30, minSummaryWords: 50, defaultDuration: 60, orgName: "顾家家居", deptName: "人才发展中心" },
     };
   },
+
+  /* 上传附件到服务器 */
+  async uploadFile(file) {
+    const resp = await fetch("/api/upload", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + this.token },
+      body: JSON.stringify({ filename: file.name, contentType: file.type, base64Data: file.base64 }),
+    });
+    return resp.json();
+  },
 };
 
 /* ===== 第三部分：状态管理 ===== */
@@ -332,6 +342,8 @@ const State = {
   currentView: null,
   adminTab: "users",
   timer: { running: false, seconds: 0, intervalId: null, recordId: null },
+  pendingAttachments: [],
+  existingAttachments: [],
 };
 
 /* ===== 第四部分：工具函数 ===== */
@@ -686,9 +698,20 @@ const Views = {
               <span class="badge badge-primary">📍 当前学习</span>
             </div>
             <div class="task-content">${plan.content}</div>
-            <ul class="task-points">
-              ${plan.points.map(p => `<li>${p}</li>`).join("")}
-            </ul>
+            ${plan.points && plan.points.length > 0 ? `<ul class="task-points">${plan.points.map(p => `<li>${p}</li>`).join("")}</ul>` : ""}
+            ${(plan.attachments && plan.attachments.length > 0) ? `
+              <div class="attachment-section">
+                <div style="font-size:13px;font-weight:600;margin-bottom:8px;">📎 学习课件</div>
+                ${plan.attachments.map(a => `
+                  <a class="attachment-download" href="${Actions.buildAttachmentUrl(a)}" target="_blank" download="${a.name}">
+                    <span class="att-icon">${Actions.getFileIcon(a.type)}</span>
+                    <span class="att-name">${a.name}</span>
+                    <span class="att-size">${Actions.formatFileSize(a.size)}</span>
+                    <span class="att-download-icon">⬇</span>
+                  </a>
+                `).join("")}
+              </div>
+            ` : ""}
             ${timerHtml}
             ${summaryHtml}
           </div>
@@ -1065,16 +1088,14 @@ const Views = {
 
   /* ----- HR：学习计划（可编辑） ----- */
   hrPlan() {
-    const categories = [...new Set(State.data.plan.map(p => p.category))];
     const totalDuration = State.data.plan.reduce((s, p) => s + p.duration, 0);
+    const totalAttachments = State.data.plan.reduce((s, p) => s + ((p.attachments || []).length), 0);
     document.getElementById("content").innerHTML = `
       <div class="page-title">学习计划管理</div>
-      <div class="page-desc">共 ${State.data.plan.length} 天课程 · 总要求时长 ${Utils.formatDuration(totalDuration)} · 可自定义编制课程内容与学习时长</div>
+      <div class="page-desc">共 ${State.data.plan.length} 天课程 · 总要求时长 ${Utils.formatDuration(totalDuration)} · ${totalAttachments} 个附件</div>
       <div class="card">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            ${categories.map(cat => `<span class="badge badge-primary">${cat}（${State.data.plan.filter(p => p.category === cat).length}天）</span>`).join("")}
-          </div>
+          <div style="font-size:13px;color:var(--c-text-secondary);">点击「新增课程」可添加课程标题、学习时长、课程描述和上传课件附件</div>
           <div style="display:flex;gap:8px;">
             <button class="btn btn-ghost btn-sm" onclick="Actions.importCourses()">📥 一键导入</button>
             <button class="btn btn-ghost btn-sm" onclick="Actions.downloadTemplate()">📄 下载模板</button>
@@ -1084,16 +1105,15 @@ const Views = {
         </div>
         <div class="table-wrapper">
           <table>
-            <thead><tr><th style="width:60px;">天数</th><th>课程标题</th><th>分类</th><th style="width:90px;">要求时长</th><th>课程描述</th><th>学习要点</th><th style="width:120px;">操作</th></tr></thead>
+            <thead><tr><th style="width:60px;">天数</th><th>课程标题</th><th style="width:90px;">要求时长</th><th>课程描述</th><th style="width:100px;">课件附件</th><th style="width:120px;">操作</th></tr></thead>
             <tbody>
               ${State.data.plan.map((p, idx) => `
                 <tr>
                   <td><strong>Day ${p.day}</strong></td>
                   <td style="font-weight:600;">${p.title}</td>
-                  <td><span class="badge badge-gray">${p.category}</span></td>
                   <td><span style="font-weight:600;color:var(--c-primary);">${Utils.formatDuration(p.duration)}</span></td>
-                  <td style="max-width:200px;font-size:12px;color:var(--c-text-secondary);">${p.content.length > 40 ? p.content.substring(0,40) + "..." : p.content}</td>
-                  <td style="max-width:150px;font-size:12px;color:var(--c-text-secondary);">${p.points.length} 个要点</td>
+                  <td style="max-width:250px;font-size:12px;color:var(--c-text-secondary);">${p.content.length > 50 ? p.content.substring(0,50) + "..." : p.content}</td>
+                  <td style="font-size:12px;">${(p.attachments && p.attachments.length > 0) ? `<span style="color:var(--c-primary);">📎 ${p.attachments.length} 个文件</span>` : '<span style="color:var(--c-text-muted);">—</span>'}</td>
                   <td>
                     <button class="btn btn-ghost btn-sm" onclick="Actions.editCourse(${idx})">编辑</button>
                     <button class="btn btn-ghost btn-sm" style="color:var(--c-danger);" onclick="Actions.deleteCourse(${idx})">删除</button>
@@ -1690,10 +1710,101 @@ const Actions = {
     }
   },
 
+  /* ===== 附件处理 ===== */
+  getFileIcon(type) {
+    if (!type) return "📄";
+    if (type.startsWith("video/")) return "🎬";
+    if (type.startsWith("audio/")) return "🎵";
+    if (type.startsWith("image/")) return "🖼️";
+    if (type.includes("pdf")) return "📕";
+    if (type.includes("presentation") || type.includes("powerpoint")) return "📊";
+    if (type.includes("word") || type.includes("document")) return "📝";
+    if (type.includes("sheet") || type.includes("excel")) return "📈";
+    if (type.includes("zip") || type.includes("rar") || type.includes("7z")) return "🗜️";
+    return "📄";
+  },
+
+  formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+  },
+
+  handleFileSelect(input) {
+    const files = Array.from(input.files);
+    files.forEach(file => {
+      if (file.size > 100 * 1024 * 1024) {
+        toast(`文件 ${file.name} 超过 100MB 限制`, "warning");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        State.pendingAttachments.push({
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          base64: e.target.result.split(",")[1],
+        });
+        Actions.renderAttachmentList();
+      };
+      reader.readAsDataURL(file);
+    });
+    input.value = "";
+  },
+
+  renderAttachmentList() {
+    const container = document.getElementById("attachment-list");
+    if (!container) return;
+    const atts = State.pendingAttachments;
+    if (atts.length === 0) { container.innerHTML = ""; return; }
+    container.innerHTML = atts.map((a, i) => `
+      <div class="attachment-item">
+        <span class="att-icon">${Actions.getFileIcon(a.type)}</span>
+        <span class="att-name">${a.name}</span>
+        <span class="att-size">${Actions.formatFileSize(a.size)}</span>
+        <span class="att-badge att-new">待上传</span>
+        <button class="att-remove" onclick="Actions.removePendingAttachment(${i})">✕</button>
+      </div>
+    `).join("");
+  },
+
+  renderExistingAttachments() {
+    const container = document.getElementById("existing-attachments");
+    if (!container) return;
+    const atts = State.existingAttachments;
+    if (atts.length === 0) { container.innerHTML = ""; return; }
+    container.innerHTML = atts.map((a, i) => `
+      <div class="attachment-item">
+        <span class="att-icon">${Actions.getFileIcon(a.type)}</span>
+        <span class="att-name">${a.name}</span>
+        <span class="att-size">${Actions.formatFileSize(a.size)}</span>
+        <span class="att-badge att-exist">已上传</span>
+        <button class="att-remove" onclick="Actions.removeExistingAttachment(${i})">✕</button>
+      </div>
+    `).join("");
+  },
+
+  removePendingAttachment(idx) {
+    State.pendingAttachments.splice(idx, 1);
+    Actions.renderAttachmentList();
+  },
+
+  removeExistingAttachment(idx) {
+    State.existingAttachments.splice(idx, 1);
+    Actions.renderExistingAttachments();
+  },
+
+  buildAttachmentUrl(att) {
+    if (att.githubPath) {
+      return `/api/attachment?path=${encodeURIComponent(att.githubPath)}`;
+    }
+    return att.url || "#";
+  },
+
   /* ===== 课程管理：新增课程 ===== */
   addCourse() {
-    const categories = [...new Set(State.data.plan.map(p => p.category))];
     const nextDay = State.data.plan.length + 1;
+    State.pendingAttachments = [];
     Modal.open(
       "新增课程",
       `
@@ -1701,24 +1812,26 @@ const Actions = {
           <label class="form-label">课程标题 <span class="required">*</span></label>
           <input class="form-input" id="course-title" placeholder="如：产品知识培训">
         </div>
-        <div style="display:flex;gap:16px;">
-          <div class="form-group" style="flex:1;">
-            <label class="form-label">分类 <span class="required">*</span></label>
-            <input class="form-input" id="course-category" list="category-list" placeholder="选择或输入分类" value="${categories[0] || ""}">
-            <datalist id="category-list">${categories.map(c => `<option value="${c}">`).join("")}</datalist>
-          </div>
-          <div class="form-group" style="width:140px;">
-            <label class="form-label">要求学习时长（分钟）<span class="required">*</span></label>
-            <input class="form-input" id="course-duration" type="number" min="15" step="15" value="60">
-          </div>
+        <div class="form-group">
+          <label class="form-label">要求学习时长（分钟）<span class="required">*</span></label>
+          <input class="form-input" id="course-duration" type="number" min="0" max="500" step="5" value="60">
+          <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">范围 0–500 分钟，0 表示不计时</div>
         </div>
         <div class="form-group">
           <label class="form-label">课程描述 <span class="required">*</span></label>
-          <textarea class="form-textarea" id="course-content" placeholder="描述本课程的学习内容与目标..." style="min-height:80px;"></textarea>
+          <textarea class="form-textarea" id="course-content" placeholder="描述本课程的学习内容与目标..." style="min-height:100px;"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">学习要点（每行一个）</label>
-          <textarea class="form-textarea" id="course-points" placeholder="要点1&#10;要点2&#10;要点3" style="min-height:100px;"></textarea>
+          <label class="form-label">学习课件附件 <span style="font-size:12px;color:var(--c-text-muted);font-weight:400;">（非必填）</span></label>
+          <div class="upload-area" id="upload-area" onclick="document.getElementById('course-attachment').click()">
+            <input type="file" id="course-attachment" multiple style="display:none;" onchange="Actions.handleFileSelect(this)">
+            <div class="upload-placeholder">
+              <span style="font-size:36px;">📎</span>
+              <div style="font-weight:600;margin-top:8px;">点击选择文件</div>
+              <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">支持文档、PPT、视频等，可多选，单个最大 100MB</div>
+            </div>
+          </div>
+          <div id="attachment-list"></div>
         </div>
         <div style="font-size:12px;color:var(--c-text-muted);">该课程将排为 Day ${nextDay}</div>
       `,
@@ -1733,7 +1846,8 @@ const Actions = {
   editCourse(idx) {
     const course = State.data.plan[idx];
     if (!course) return;
-    const categories = [...new Set(State.data.plan.map(p => p.category))];
+    State.pendingAttachments = [];
+    State.existingAttachments = (course.attachments || []).map(a => ({ ...a }));
     Modal.open(
       `编辑课程 — Day ${course.day}`,
       `
@@ -1741,24 +1855,27 @@ const Actions = {
           <label class="form-label">课程标题 <span class="required">*</span></label>
           <input class="form-input" id="course-title" value="${course.title}">
         </div>
-        <div style="display:flex;gap:16px;">
-          <div class="form-group" style="flex:1;">
-            <label class="form-label">分类 <span class="required">*</span></label>
-            <input class="form-input" id="course-category" list="category-list" value="${course.category}">
-            <datalist id="category-list">${categories.map(c => `<option value="${c}">`).join("")}</datalist>
-          </div>
-          <div class="form-group" style="width:140px;">
-            <label class="form-label">要求时长（分钟）<span class="required">*</span></label>
-            <input class="form-input" id="course-duration" type="number" min="15" step="15" value="${course.duration}">
-          </div>
+        <div class="form-group">
+          <label class="form-label">要求学习时长（分钟）<span class="required">*</span></label>
+          <input class="form-input" id="course-duration" type="number" min="0" max="500" step="5" value="${course.duration}">
+          <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">范围 0–500 分钟，0 表示不计时</div>
         </div>
         <div class="form-group">
           <label class="form-label">课程描述 <span class="required">*</span></label>
-          <textarea class="form-textarea" id="course-content" style="min-height:80px;">${course.content}</textarea>
+          <textarea class="form-textarea" id="course-content" style="min-height:100px;">${course.content}</textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">学习要点（每行一个）</label>
-          <textarea class="form-textarea" id="course-points" style="min-height:100px;">${course.points.join("\n")}</textarea>
+          <label class="form-label">学习课件附件 <span style="font-size:12px;color:var(--c-text-muted);font-weight:400;">（非必填）</span></label>
+          <div id="existing-attachments"></div>
+          <div class="upload-area" id="upload-area" onclick="document.getElementById('course-attachment').click()">
+            <input type="file" id="course-attachment" multiple style="display:none;" onchange="Actions.handleFileSelect(this)">
+            <div class="upload-placeholder">
+              <span style="font-size:36px;">📎</span>
+              <div style="font-weight:600;margin-top:8px;">点击添加新文件</div>
+              <div style="font-size:12px;color:var(--c-text-muted);margin-top:4px;">支持文档、PPT、视频等，可多选</div>
+            </div>
+          </div>
+          <div id="attachment-list"></div>
         </div>
         <div style="font-size:12px;color:var(--c-warning);">⚠️ 修改学习时长后，尚未提交的当日学习记录将自动更新要求时长</div>
       `,
@@ -1767,27 +1884,48 @@ const Actions = {
         <button class="btn btn-primary" onclick="Actions.saveCourse(false, ${idx})">保存修改</button>
       `
     );
+    Actions.renderExistingAttachments();
   },
 
   /* ===== 课程管理：保存课程 ===== */
-  saveCourse(isNew, idx) {
+  async saveCourse(isNew, idx) {
     const title = document.getElementById("course-title").value.trim();
-    const category = document.getElementById("course-category").value.trim();
     const duration = parseInt(document.getElementById("course-duration").value);
     const content = document.getElementById("course-content").value.trim();
-    const pointsRaw = document.getElementById("course-points").value.trim();
 
     if (!title) { toast("请填写课程标题", "warning"); return; }
-    if (!category) { toast("请填写分类", "warning"); return; }
-    if (!duration || duration < 15) { toast("学习时长至少15分钟", "warning"); return; }
+    if (isNaN(duration) || duration < 0 || duration > 500) { toast("学习时长需在 0–500 分钟之间", "warning"); return; }
     if (!content) { toast("请填写课程描述", "warning"); return; }
 
-    const points = pointsRaw ? pointsRaw.split("\n").map(s => s.trim()).filter(s => s) : ["（待补充学习要点）"];
+    // 上传新附件
+    let newAttachments = [];
+    const pending = State.pendingAttachments;
+    if (pending.length > 0) {
+      const btn = document.querySelector('.modal-footer .btn-primary');
+      if (btn) { btn.disabled = true; btn.textContent = "上传附件中..."; }
+      for (const att of pending) {
+        try {
+          const result = await API.uploadFile(att);
+          if (result.success) {
+            newAttachments.push(result.attachment);
+          } else {
+            toast(`附件「${att.name}」上传失败: ${result.error}`, "warning");
+          }
+        } catch (e) {
+          toast(`附件「${att.name}」上传失败`, "warning");
+        }
+      }
+      if (btn) { btn.disabled = false; btn.textContent = "保存课程"; }
+    }
+
+    // 合并已有附件和新附件
+    const allAttachments = [...(State.existingAttachments || []), ...newAttachments];
+    const category = "通用";
+    const points = [];
 
     if (isNew) {
       const nextDay = State.data.plan.length + 1;
-      State.data.plan.push({ day: nextDay, title, category, duration, content, points });
-      // 为所有员工创建该天的待学习记录（如果该天还没有记录的话）
+      State.data.plan.push({ day: nextDay, title, category, duration, content, points, attachments: allAttachments });
       State.data.users.filter(u => u.role === "employee").forEach(emp => {
         const exists = State.data.records.find(r => r.employeeId === emp.id && r.day === nextDay);
         if (!exists) {
@@ -1808,11 +1946,9 @@ const Actions = {
       const course = State.data.plan[idx];
       const oldDuration = course.duration;
       course.title = title;
-      course.category = category;
       course.duration = duration;
       course.content = content;
-      course.points = points;
-      // 更新尚未提交的记录的要求时长
+      course.attachments = allAttachments;
       if (oldDuration !== duration) {
         State.data.records.forEach(r => {
           if (r.day === course.day && (r.status === "pending" || r.status === "studying")) {
@@ -1822,6 +1958,8 @@ const Actions = {
       }
     }
 
+    State.pendingAttachments = [];
+    State.existingAttachments = [];
     API.save(State.data);
     Modal.close();
     toast(isNew ? "课程已新增！" : "课程已更新！", "success");
@@ -1879,10 +2017,10 @@ const Actions = {
         <div style="background:var(--c-primary-light);padding:14px;border-radius:6px;margin-bottom:16px;font-size:13px;line-height:1.8;">
           <strong>导入格式说明：</strong><br>
           每行一门课程，字段用竖线 <code style="background:#fff;padding:1px 4px;border-radius:3px;">|</code> 分隔：<br>
-          <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:12px;">课程标题 | 分类 | 时长(分钟) | 课程描述 | 要点1;要点2;要点3</code><br><br>
+          <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:12px;">课程标题 | 时长(分钟) | 课程描述</code><br><br>
           <strong>示例：</strong><br>
-          <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:12px;display:block;margin-top:4px;white-space:pre-wrap;">公司简介与发展历程 | 企业文化 | 60 | 了解公司发展历程与愿景 | 发展大事记;企业愿景使命;全球化布局
-产品体系总览-沙发 | 产品知识 | 90 | 学习沙发产品线与材质工艺 | 产品系列定位;材质工艺;价格体系</code>
+          <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:12px;display:block;margin-top:4px;white-space:pre-wrap;">公司简介与发展历程 | 60 | 了解公司发展历程与愿景
+产品体系总览-沙发 | 90 | 学习沙发产品线与材质工艺</code>
         </div>
         <div class="form-group">
           <label class="form-label">粘贴课程内容</label>
@@ -1895,7 +2033,7 @@ const Actions = {
           </label>
           <span style="font-size:12px;color:var(--c-text-muted);">支持 .txt / .csv 文件</span>
         </div>
-        <div style="margin-top:12px;font-size:12px;color:var(--c-text-muted);">导入的课程将追加到现有计划末尾</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--c-text-muted);">导入的课程将追加到现有计划末尾（附件需后续编辑课程时上传）</div>
       `,
       `
         <button class="btn btn-ghost" onclick="Modal.close()">取消</button>
@@ -1927,18 +2065,16 @@ const Actions = {
 
     lines.forEach((line, i) => {
       const parts = line.split("|").map(s => s.trim());
-      if (parts.length < 4) { fail++; return; }
+      if (parts.length < 3) { fail++; return; }
 
       const title = parts[0];
-      const category = parts[1] || "未分类";
-      const duration = parseInt(parts[2]) || 60;
-      const content = parts[3] || "";
-      const points = parts[4] ? parts[4].split(";").map(s => s.trim()).filter(s => s) : ["（待补充）"];
+      const duration = parseInt(parts[1]) || 60;
+      const content = parts[2] || "";
 
       if (!title || !content) { fail++; return; }
 
       const day = startDay + success;
-      State.data.plan.push({ day, title, category, duration, content, points });
+      State.data.plan.push({ day, title, category: "通用", duration, content, points: [], attachments: [] });
 
       // 为所有员工创建待学习记录
       State.data.users.filter(u => u.role === "employee").forEach(emp => {
@@ -1973,13 +2109,14 @@ const Actions = {
   /* ===== 课程管理：下载模板 ===== */
   downloadTemplate() {
     const sample = `# 试用期学习计划课程模板
-# 格式：课程标题 | 分类 | 时长(分钟) | 课程描述 | 要点1;要点2;要点3
+# 格式：课程标题 | 时长(分钟) | 课程描述
 # 每行一门课程，以 # 开头的行会被忽略
-公司简介与发展历程 | 企业文化 | 60 | 了解公司发展历程、企业愿景与使命 | 发展大事记;企业愿景使命;全球化布局
-企业文化与核心价值观 | 企业文化 | 60 | 深入学习企业品牌理念与行为准则 | 品牌理念;员工行为准则;社会责任
-产品体系总览-沙发 | 产品知识 | 90 | 系统学习沙发产品线及材质工艺 | 产品系列定位;材质工艺;价格体系
-门店运营基础流程 | 门店运营 | 60 | 学习门店日常运营标准流程 | 门店SOP;陈列标准;开闭店流程
-数字化工具使用培训 | 系统操作 | 75 | 学习内部系统操作 | ERP操作;CRM流程;OA审批`;
+# 附件需在新增/编辑课程时单独上传
+公司简介与发展历程 | 60 | 了解公司发展历程、企业愿景与使命
+企业文化与核心价值观 | 60 | 深入学习企业品牌理念与行为准则
+产品体系总览-沙发 | 90 | 系统学习沙发产品线及材质工艺
+门店运营基础流程 | 60 | 学习门店日常运营标准流程
+数字化工具使用培训 | 75 | 学习内部系统操作规范`;
 
     const blob = new Blob([sample], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
