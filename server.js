@@ -422,7 +422,7 @@ const server = http.createServer(async (req, res) => {
     return sendJSON(res, 200, appData);
   }
 
-  /* --- API: 上传附件到 GitHub --- */
+  /* --- API: 上传附件到 GitHub（支持分片，大小不限） --- */
   if (pathname === "/api/upload" && req.method === "POST") {
     const userId = authUser(req);
     if (!userId) return sendJSON(res, 401, { error: "未登录" });
@@ -438,17 +438,25 @@ const server = http.createServer(async (req, res) => {
     const base64Data = parsed.base64Data;
     if (!base64Data) return sendJSON(res, 400, { error: "缺少文件数据" });
 
-    // 检查文件大小（GitHub Contents API 限制 100MB）
+    // 分片参数（未传分片参数时视为单片完整文件，兼容旧调用）
+    const uploadId = (parsed.uploadId || `${Date.now()}_single`).replace(/[^a-zA-Z0-9_\-]/g, "_");
+    const chunkIndex = Number.isInteger(parsed.chunkIndex) ? parsed.chunkIndex : 0;
+    const totalChunks = Number.isInteger(parsed.totalChunks) && parsed.totalChunks > 0 ? parsed.totalChunks : 1;
+    const totalSize = Number.isFinite(parsed.totalSize) ? parsed.totalSize : null;
+
+    // 单片大小限制（GitHub Contents API 单文件上限 100MB）
     const sizeBytes = Math.floor(base64Data.length * 0.75);
-    if (sizeBytes > 100 * 1024 * 1024) {
-      return sendJSON(res, 413, { error: "文件大小超过 100MB 限制" });
+    if (sizeBytes > 95 * 1024 * 1024) {
+      return sendJSON(res, 413, { error: "分片大小异常（超过 95MB），请重试" });
     }
 
     // 生成安全文件名
     const safeName = filename.replace(/[^a-zA-Z0-9._\-\u4e00-\u9fa5]/g, "_");
-    const timestamp = Date.now();
     const ext = safeName.match(/\.([a-zA-Z0-9]+)$/)?.[1]?.toLowerCase() || "";
-    const githubPath = `attachments/${timestamp}_${safeName}`;
+    // 分片文件路径（单片时保持旧格式不带 .part 后缀，便于兼容）
+    const githubPath = totalChunks > 1
+      ? `attachments/${uploadId}_${safeName}.part${chunkIndex}`
+      : `attachments/${uploadId}_${safeName}`;
 
     if (GITHUB_TOKEN) {
       try {
@@ -462,29 +470,42 @@ const server = http.createServer(async (req, res) => {
             "User-Agent": "probation-system",
           },
           body: JSON.stringify({
-            message: `upload: ${filename}`,
+            message: `upload: ${filename}${totalChunks > 1 ? ` (part ${chunkIndex + 1}/${totalChunks})` : ""}`,
             content: base64Data,
             branch: GITHUB_BRANCH,
           }),
         });
-        if (resp.ok) {
-          const data = await resp.json();
-          return sendJSON(res, 200, {
-            success: true,
-            attachment: {
-              name: filename,
-              size: sizeBytes,
-              type: contentType,
-              ext: ext,
-              githubPath: githubPath,
-              uploadedAt: new Date().toISOString(),
-            },
-          });
-        } else {
+        if (!resp.ok) {
           const errText = await resp.text();
           console.error("[Upload] GitHub 上传失败:", resp.status, errText.slice(0, 200));
           return sendJSON(res, 500, { error: `附件上传失败 (${resp.status})` });
         }
+
+        // 中间分片：返回进度即可
+        if (chunkIndex < totalChunks - 1) {
+          return sendJSON(res, 200, { success: true, chunkIndex, totalChunks, done: false });
+        }
+
+        // 最后一片：汇总全部分片路径返回附件元数据
+        const githubPaths = [];
+        for (let k = 0; k < totalChunks; k++) {
+          githubPaths.push(totalChunks > 1
+            ? `attachments/${uploadId}_${safeName}.part${k}`
+            : `attachments/${uploadId}_${safeName}`);
+        }
+        return sendJSON(res, 200, {
+          success: true,
+          done: true,
+          attachment: {
+            name: filename,
+            size: totalSize != null ? totalSize : sizeBytes,
+            type: contentType,
+            ext: ext,
+            githubPaths: githubPaths,
+            totalChunks: totalChunks,
+            uploadedAt: new Date().toISOString(),
+          },
+        });
       } catch (e) {
         console.error("[Upload] 错误:", e.message);
         return sendJSON(res, 500, { error: "附件上传失败" });
@@ -494,52 +515,59 @@ const server = http.createServer(async (req, res) => {
     }
   }
 
-  /* --- API: 下载附件（GitHub 代理）--- */
-  if (pathname.startsWith("/api/attachment") && req.method === "GET") {
-    const filePath = url.searchParams.get("path");
-    if (!filePath) return sendJSON(res, 400, { error: "缺少文件路径" });
+  /* --- API: 下载附件（GitHub 代理，支持多分片顺序流式拼接） --- */
+  if (pathname.startsWith("/api/attachment") && pathname !== "/api/attachment/delete" && req.method === "GET") {
+    const partsParam = url.searchParams.get("parts");
+    const singlePath = url.searchParams.get("path");
+    const dispName = url.searchParams.get("name") || "";
+    const typeParam = url.searchParams.get("type") || "";
+    const parts = partsParam ? partsParam.split(",").filter(Boolean) : (singlePath ? [singlePath] : []);
+    if (parts.length === 0) return sendJSON(res, 400, { error: "缺少文件路径" });
     if (GITHUB_TOKEN) {
+      const mimeTypes = {
+        pdf: "application/pdf", ppt: "application/vnd.ms-powerpoint", pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        doc: "application/msword", docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        xls: "application/vnd.ms-excel", xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        mp4: "video/mp4", avi: "video/x-msvideo", mov: "video/quicktime", wmv: "video/x-ms-wmv", flv: "video/x-flv",
+        mp3: "audio/mpeg", wav: "audio/wav",
+        jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", gif: "image/gif", bmp: "image/bmp",
+        txt: "text/plain", csv: "text/csv", html: "text/html",
+        zip: "application/zip", rar: "application/x-rar-compressed", "7z": "application/x-7z-compressed",
+      };
+      const fallbackName = (parts[0].split("/").pop() || "file").replace(/^\d+_\d*_?/, "").replace(/\.part\d+$/, "");
+      const fileName = dispName || fallbackName;
+      const ext = (fileName.match(/\.([a-zA-Z0-9]+)$/) || [])[1]?.toLowerCase() || "";
+      const ct = typeParam || mimeTypes[ext] || "application/octet-stream";
       try {
-        const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}?ref=${GITHUB_BRANCH}`;
-        const resp = await fetch(apiUrl, {
-          headers: {
-            "Authorization": `token ${GITHUB_TOKEN}`,
-            "Accept": "application/vnd.github+json",
-            "User-Agent": "probation-system",
-          },
-        });
-        if (!resp.ok) return sendJSON(res, 404, { error: "文件不存在" });
-        const data = await resp.json();
-        const buffer = Buffer.from(data.content, "base64");
-        // 推断 Content-Type
-        const ext = (filePath.match(/\.([a-zA-Z0-9]+)$/) || [])[1]?.toLowerCase() || "";
-        const mimeTypes = {
-          pdf: "application/pdf", ppt: "application/vnd.ms-powerpoint", pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-          doc: "application/msword", docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          xls: "application/vnd.ms-excel", xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          mp4: "video/mp4", avi: "video/x-msvideo", mov: "video/quicktime", wmv: "video/x-ms-wmv", flv: "video/x-flv",
-          mp3: "audio/mpeg", wav: "audio/wav",
-          jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", gif: "image/gif", bmp: "image/bmp",
-          txt: "text/plain", csv: "text/csv", html: "text/html",
-          zip: "application/zip", rar: "application/x-rar-compressed", "7z": "application/x-7z-compressed",
-        };
-        const ct = mimeTypes[ext] || "application/octet-stream";
         res.writeHead(200, {
           "Content-Type": ct,
-          "Content-Length": buffer.length,
-          "Content-Disposition": `inline; filename="${(data.name || "file")}"`,
+          "Content-Disposition": `inline; filename*=UTF-8''${encodeURIComponent(fileName)}`,
         });
-        res.end(buffer);
+        for (const p of parts) {
+          const rawUrl = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}/${p.split("/").map(encodeURIComponent).join("/")}`;
+          const resp = await fetch(rawUrl, {
+            headers: { "Authorization": `token ${GITHUB_TOKEN}`, "User-Agent": "probation-system" },
+          });
+          if (!resp.ok) {
+            console.error("[Attachment] 分片获取失败:", resp.status, p);
+            res.end();
+            return;
+          }
+          const buf = Buffer.from(await resp.arrayBuffer());
+          res.write(buf);
+        }
+        res.end();
         return;
       } catch (e) {
         console.error("[Attachment] 下载失败:", e.message);
-        return sendJSON(res, 500, { error: "文件下载失败" });
+        try { res.end(); } catch {}
+        return;
       }
     }
     return sendJSON(res, 500, { error: "文件存储未配置" });
   }
 
-  /* --- API: 删除附件 --- */
+  /* --- API: 删除附件（支持多分片） --- */
   if (pathname === "/api/attachment/delete" && req.method === "POST") {
     const userId = authUser(req);
     if (!userId) return sendJSON(res, 401, { error: "未登录" });
@@ -548,27 +576,29 @@ const server = http.createServer(async (req, res) => {
     const body = await readBody(req);
     let parsed;
     try { parsed = JSON.parse(body); } catch { return sendJSON(res, 400, { error: "请求格式错误" }); }
-    const filePath = parsed.path;
-    if (!filePath || !GITHUB_TOKEN) return sendJSON(res, 400, { error: "参数错误" });
-    try {
-      // 先获取 SHA
-      const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}?ref=${GITHUB_BRANCH}`;
-      const resp = await fetch(apiUrl, {
-        headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json", "User-Agent": "probation-system" },
-      });
-      if (!resp.ok) return sendJSON(res, 404, { error: "文件不存在" });
-      const data = await resp.json();
-      // 删除文件
-      const delResp = await fetch(apiUrl, {
-        method: "DELETE",
-        headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json", "Content-Type": "application/json", "User-Agent": "probation-system" },
-        body: JSON.stringify({ message: `delete: ${data.name}`, branch: GITHUB_BRANCH, sha: data.sha }),
-      });
-      if (delResp.ok) return sendJSON(res, 200, { ok: true });
-      return sendJSON(res, 500, { error: "删除失败" });
-    } catch (e) {
-      return sendJSON(res, 500, { error: "删除失败" });
+    const paths = Array.isArray(parsed.paths) ? parsed.paths : (parsed.path ? [parsed.path] : []);
+    if (paths.length === 0 || !GITHUB_TOKEN) return sendJSON(res, 400, { error: "参数错误" });
+    let deleted = 0, failed = 0;
+    for (const filePath of paths) {
+      try {
+        // 先获取 SHA
+        const apiUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/${filePath}?ref=${GITHUB_BRANCH}`;
+        const resp = await fetch(apiUrl, {
+          headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json", "User-Agent": "probation-system" },
+        });
+        if (!resp.ok) { failed++; continue; }
+        const data = await resp.json();
+        // 删除文件
+        const delResp = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: { "Authorization": `token ${GITHUB_TOKEN}`, "Accept": "application/vnd.github+json", "Content-Type": "application/json", "User-Agent": "probation-system" },
+          body: JSON.stringify({ message: `delete: ${data.name}`, branch: GITHUB_BRANCH, sha: data.sha }),
+        });
+        if (delResp.ok) deleted++; else failed++;
+      } catch { failed++; }
     }
+    if (deleted > 0) return sendJSON(res, 200, { ok: true, deleted, failed });
+    return sendJSON(res, 500, { error: "删除失败", deleted, failed });
   }
 
   /* --- API: 保存数据（需登录）--- */
@@ -754,7 +784,7 @@ async function start() {
     }
   }
 
-  server.timeout = 300000; // 5 分钟超时（支持大文件上传）
+  server.timeout = 600000; // 10 分钟超时（支持大附件上传/下载）
   server.listen(PORT, () => {
     console.log(`\n========================================`);
     console.log(`  试用期员工学习管理系统`);
