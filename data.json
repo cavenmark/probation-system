@@ -75,18 +75,6 @@
   "plan": [
     {
       "day": 1,
-      "title": "竞品分析与市场洞察",
-      "category": "市场分析",
-      "duration": 75,
-      "content": "分析主要竞争对手的产品、价格、渠道策略，了解家居行业市场趋势。",
-      "points": [
-        "主要竞品对比分析",
-        "家居行业市场趋势",
-        "顾家差异化竞争优势"
-      ]
-    },
-    {
-      "day": 2,
       "title": "门店数据分析基础",
       "category": "市场分析",
       "duration": 60,
@@ -98,7 +86,7 @@
       ]
     },
     {
-      "day": 3,
+      "day": 2,
       "title": "阶段性考核 — 前两周复盘",
       "category": "考核评估",
       "duration": 90,
@@ -110,7 +98,7 @@
       ]
     },
     {
-      "day": 4,
+      "day": 3,
       "title": "产品搭配与全屋方案设计",
       "category": "产品知识",
       "duration": 90,
@@ -122,7 +110,7 @@
       ]
     },
     {
-      "day": 5,
+      "day": 4,
       "title": "促销活动与营销执行",
       "category": "门店运营",
       "duration": 60,
@@ -134,7 +122,7 @@
       ]
     },
     {
-      "day": 6,
+      "day": 5,
       "title": "VIP客户管理与服务",
       "category": "门店运营",
       "duration": 60,
@@ -146,7 +134,7 @@
       ]
     },
     {
-      "day": 7,
+      "day": 6,
       "title": "团队协作与门店会议",
       "category": "综合素养",
       "duration": 45,
@@ -158,7 +146,7 @@
       ]
     },
     {
-      "day": 8,
+      "day": 7,
       "title": "职业发展规划与晋升路径",
       "category": "综合素养",
       "duration": 45,
@@ -170,7 +158,7 @@
       ]
     },
     {
-      "day": 9,
+      "day": 8,
       "title": "门店实操 — 客户接待模拟",
       "category": "实操演练",
       "duration": 120,
@@ -182,7 +170,7 @@
       ]
     },
     {
-      "day": 10,
+      "day": 9,
       "title": "门店实操 — 产品讲解演练",
       "category": "实操演练",
       "duration": 120,
@@ -194,7 +182,7 @@
       ]
     },
     {
-      "day": 11,
+      "day": 10,
       "title": "门店实操 — 异议处理与促单",
       "category": "实操演练",
       "duration": 120,
@@ -206,7 +194,7 @@
       ]
     },
     {
-      "day": 12,
+      "day": 11,
       "title": "门店实操 — 订单录入与交付",
       "category": "实操演练",
       "duration": 90,
@@ -218,7 +206,7 @@
       ]
     },
     {
-      "day": 13,
+      "day": 12,
       "title": "门店实操 — 独立接待考核",
       "category": "实操演练",
       "duration": 180,
@@ -230,7 +218,7 @@
       ]
     },
     {
-      "day": 14,
+      "day": 13,
       "title": "客户回访与关系维护",
       "category": "门店运营",
       "duration": 60,
@@ -242,7 +230,7 @@
       ]
     },
     {
-      "day": 15,
+      "day": 14,
       "title": "门店经营数据分析实操",
       "category": "市场分析",
       "duration": 75,
@@ -254,7 +242,7 @@
       ]
     },
     {
-      "day": 16,
+      "day": 15,
       "title": "试用期总结撰写",
       "category": "考核评估",
       "duration": 90,
@@ -266,7 +254,7 @@
       ]
     },
     {
-      "day": 17,
+      "day": 16,
       "title": "转正答辩准备",
       "category": "考核评估",
       "duration": 90,
@@ -278,7 +266,7 @@
       ]
     },
     {
-      "day": 18,
+      "day": 17,
       "title": "转正答辩与评估",
       "category": "考核评估",
       "duration": 120,
@@ -292,23 +280,9 @@
   ],
   "records": [
     {
-      "id": "lr_u1_13",
-      "employeeId": "u1",
-      "day": 1,
-      "date": "2026-07-27",
-      "status": "submitted",
-      "actualDuration": 90,
-      "requiredDuration": 75,
-      "summary": "今日学习了竞品分析与市场洞察，重点掌握了主要���品���比分析���通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-14T09:57:44.102Z",
-      "reviewedBy": null,
-      "reviewedAt": null,
-      "reviewComment": ""
-    },
-    {
       "id": "lr_u1_14",
       "employeeId": "u1",
-      "day": 2,
+      "day": 1,
       "date": "2026-07-28",
       "status": "approved",
       "actualDuration": 67,
@@ -322,7 +296,7 @@
     {
       "id": "lr_u1_15",
       "employeeId": "u1",
-      "day": 3,
+      "day": 2,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 89,
@@ -336,7 +310,7 @@
     {
       "id": "lr_u1_16",
       "employeeId": "u1",
-      "day": 4,
+      "day": 3,
       "date": "2026-07-30",
       "status": "approved",
       "actualDuration": 94,
@@ -350,7 +324,7 @@
     {
       "id": "lr_u1_17",
       "employeeId": "u1",
-      "day": 5,
+      "day": 4,
       "date": "2026-07-31",
       "status": "approved",
       "actualDuration": 56,
@@ -364,7 +338,7 @@
     {
       "id": "lr_u1_18",
       "employeeId": "u1",
-      "day": 6,
+      "day": 5,
       "date": "2026-08-01",
       "status": "approved",
       "actualDuration": 54,
@@ -378,7 +352,7 @@
     {
       "id": "lr_u1_19",
       "employeeId": "u1",
-      "day": 7,
+      "day": 6,
       "date": "2026-08-02",
       "status": "approved",
       "actualDuration": 48,
@@ -392,7 +366,7 @@
     {
       "id": "lr_u1_20",
       "employeeId": "u1",
-      "day": 8,
+      "day": 7,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 58,
@@ -406,7 +380,7 @@
     {
       "id": "lr_u1_21",
       "employeeId": "u1",
-      "day": 9,
+      "day": 8,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 135,
@@ -420,7 +394,7 @@
     {
       "id": "lr_u1_22",
       "employeeId": "u1",
-      "day": 10,
+      "day": 9,
       "date": "2026-08-05",
       "status": "approved",
       "actualDuration": 135,
@@ -434,7 +408,7 @@
     {
       "id": "lr_u1_23",
       "employeeId": "u1",
-      "day": 11,
+      "day": 10,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 131,
@@ -448,7 +422,7 @@
     {
       "id": "lr_u1_24",
       "employeeId": "u1",
-      "day": 12,
+      "day": 11,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 97,
@@ -462,7 +436,7 @@
     {
       "id": "lr_u1_25",
       "employeeId": "u1",
-      "day": 13,
+      "day": 12,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 199,
@@ -476,7 +450,7 @@
     {
       "id": "lr_u1_26",
       "employeeId": "u1",
-      "day": 14,
+      "day": 13,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 67,
@@ -490,7 +464,7 @@
     {
       "id": "lr_u1_27",
       "employeeId": "u1",
-      "day": 15,
+      "day": 14,
       "date": "2026-08-10",
       "status": "submitted",
       "actualDuration": 84,
@@ -504,7 +478,7 @@
     {
       "id": "lr_u1_28",
       "employeeId": "u1",
-      "day": 16,
+      "day": 15,
       "date": "2026-08-11",
       "status": "submitted",
       "actualDuration": 109,
@@ -518,7 +492,7 @@
     {
       "id": "lr_u1_29",
       "employeeId": "u1",
-      "day": 17,
+      "day": 16,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 108,
@@ -530,7 +504,7 @@
     {
       "id": "lr_u1_30",
       "employeeId": "u1",
-      "day": 18,
+      "day": 17,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -540,23 +514,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u2_13",
-      "employeeId": "u2",
-      "day": 1,
-      "date": "2026-07-27",
-      "status": "approved",
-      "actualDuration": 87,
-      "requiredDuration": 75,
-      "summary": "今日学习了竞品分析与市场洞察，重点掌握了主要竞品对比分析。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-07-27T00:00:00.000Z",
-      "reviewedBy": "u4",
-      "reviewedAt": "2026-07-28T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u2_14",
       "employeeId": "u2",
-      "day": 2,
+      "day": 1,
       "date": "2026-07-28",
       "status": "approved",
       "actualDuration": 58,
@@ -570,7 +530,7 @@
     {
       "id": "lr_u2_15",
       "employeeId": "u2",
-      "day": 3,
+      "day": 2,
       "date": "2026-07-29",
       "status": "approved",
       "actualDuration": 98,
@@ -584,7 +544,7 @@
     {
       "id": "lr_u2_16",
       "employeeId": "u2",
-      "day": 4,
+      "day": 3,
       "date": "2026-07-30",
       "status": "approved",
       "actualDuration": 101,
@@ -598,7 +558,7 @@
     {
       "id": "lr_u2_17",
       "employeeId": "u2",
-      "day": 5,
+      "day": 4,
       "date": "2026-07-31",
       "status": "approved",
       "actualDuration": 59,
@@ -612,7 +572,7 @@
     {
       "id": "lr_u2_18",
       "employeeId": "u2",
-      "day": 6,
+      "day": 5,
       "date": "2026-08-01",
       "status": "approved",
       "actualDuration": 52,
@@ -626,7 +586,7 @@
     {
       "id": "lr_u2_19",
       "employeeId": "u2",
-      "day": 7,
+      "day": 6,
       "date": "2026-08-02",
       "status": "rejected",
       "actualDuration": 40,
@@ -640,7 +600,7 @@
     {
       "id": "lr_u2_20",
       "employeeId": "u2",
-      "day": 8,
+      "day": 7,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 60,
@@ -654,7 +614,7 @@
     {
       "id": "lr_u2_21",
       "employeeId": "u2",
-      "day": 9,
+      "day": 8,
       "date": "2026-08-04",
       "status": "approved",
       "actualDuration": 137,
@@ -668,7 +628,7 @@
     {
       "id": "lr_u2_22",
       "employeeId": "u2",
-      "day": 10,
+      "day": 9,
       "date": "2026-08-05",
       "status": "rejected",
       "actualDuration": 117,
@@ -682,7 +642,7 @@
     {
       "id": "lr_u2_23",
       "employeeId": "u2",
-      "day": 11,
+      "day": 10,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 116,
@@ -696,7 +656,7 @@
     {
       "id": "lr_u2_24",
       "employeeId": "u2",
-      "day": 12,
+      "day": 11,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 81,
@@ -710,7 +670,7 @@
     {
       "id": "lr_u2_25",
       "employeeId": "u2",
-      "day": 13,
+      "day": 12,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 198,
@@ -724,7 +684,7 @@
     {
       "id": "lr_u2_26",
       "employeeId": "u2",
-      "day": 14,
+      "day": 13,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 78,
@@ -738,7 +698,7 @@
     {
       "id": "lr_u2_27",
       "employeeId": "u2",
-      "day": 15,
+      "day": 14,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 81,
@@ -752,7 +712,7 @@
     {
       "id": "lr_u2_28",
       "employeeId": "u2",
-      "day": 16,
+      "day": 15,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 96,
@@ -766,7 +726,7 @@
     {
       "id": "lr_u2_29",
       "employeeId": "u2",
-      "day": 17,
+      "day": 16,
       "date": "2026-08-12",
       "status": "submitted",
       "actualDuration": 104,
@@ -778,7 +738,7 @@
     {
       "id": "lr_u2_30",
       "employeeId": "u2",
-      "day": 18,
+      "day": 17,
       "date": "2026-08-13",
       "status": "pending",
       "actualDuration": 0,
@@ -788,23 +748,9 @@
       "reviewComment": ""
     },
     {
-      "id": "lr_u3_13",
-      "employeeId": "u3",
-      "day": 1,
-      "date": "2026-08-01",
-      "status": "approved",
-      "actualDuration": 69,
-      "requiredDuration": 75,
-      "summary": "今日学习了竞品分析与市场洞察，重点掌握了主要竞品对比分析。通过学习，我对市场分析有了更深入的理解，后续将在实际工作中应用所学知识。",
-      "submittedAt": "2026-08-01T00:00:00.000Z",
-      "reviewedBy": "u5",
-      "reviewedAt": "2026-08-02T00:00:00.000Z",
-      "reviewComment": "总结认真，理解到位，继续加油！"
-    },
-    {
       "id": "lr_u3_14",
       "employeeId": "u3",
-      "day": 2,
+      "day": 1,
       "date": "2026-08-02",
       "status": "rejected",
       "actualDuration": 69,
@@ -818,7 +764,7 @@
     {
       "id": "lr_u3_15",
       "employeeId": "u3",
-      "day": 3,
+      "day": 2,
       "date": "2026-08-03",
       "status": "approved",
       "actualDuration": 94,
@@ -832,7 +778,7 @@
     {
       "id": "lr_u3_16",
       "employeeId": "u3",
-      "day": 4,
+      "day": 3,
       "date": "2026-08-04",
       "status": "rejected",
       "actualDuration": 91,
@@ -846,12 +792,12 @@
     {
       "id": "lr_u3_17",
       "employeeId": "u3",
-      "day": 5,
+      "day": 4,
       "date": "2026-08-05",
       "status": "approved",
       "actualDuration": 58,
       "requiredDuration": 60,
-      "summary": "今日学习了促销活动与营销执行，重点掌握了促销活动类型与节奏。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用所学知识。",
+      "summary": "今日学习了促销活动与营销执行，重点掌握了促销活动类型与节奏。通过学习，我对门店运营有了更深入的理解，后续将在实际工作中应用��学知识。",
       "submittedAt": "2026-08-05T00:00:00.000Z",
       "reviewedBy": "u5",
       "reviewedAt": "2026-08-06T00:00:00.000Z",
@@ -860,7 +806,7 @@
     {
       "id": "lr_u3_18",
       "employeeId": "u3",
-      "day": 6,
+      "day": 5,
       "date": "2026-08-06",
       "status": "approved",
       "actualDuration": 65,
@@ -874,7 +820,7 @@
     {
       "id": "lr_u3_19",
       "employeeId": "u3",
-      "day": 7,
+      "day": 6,
       "date": "2026-08-07",
       "status": "approved",
       "actualDuration": 64,
@@ -888,7 +834,7 @@
     {
       "id": "lr_u3_20",
       "employeeId": "u3",
-      "day": 8,
+      "day": 7,
       "date": "2026-08-08",
       "status": "approved",
       "actualDuration": 59,
@@ -902,7 +848,7 @@
     {
       "id": "lr_u3_21",
       "employeeId": "u3",
-      "day": 9,
+      "day": 8,
       "date": "2026-08-09",
       "status": "approved",
       "actualDuration": 120,
@@ -916,7 +862,7 @@
     {
       "id": "lr_u3_22",
       "employeeId": "u3",
-      "day": 10,
+      "day": 9,
       "date": "2026-08-10",
       "status": "approved",
       "actualDuration": 126,
@@ -930,7 +876,7 @@
     {
       "id": "lr_u3_23",
       "employeeId": "u3",
-      "day": 11,
+      "day": 10,
       "date": "2026-08-11",
       "status": "approved",
       "actualDuration": 117,
@@ -944,7 +890,7 @@
     {
       "id": "lr_u3_24",
       "employeeId": "u3",
-      "day": 12,
+      "day": 11,
       "date": "2026-08-12",
       "status": "approved",
       "actualDuration": 94,
@@ -958,7 +904,7 @@
     {
       "id": "lr_u3_25",
       "employeeId": "u3",
-      "day": 13,
+      "day": 12,
       "date": "2026-08-13",
       "status": "submitted",
       "actualDuration": 187,
@@ -970,7 +916,7 @@
     {
       "id": "lr_u3_26",
       "employeeId": "u3",
-      "day": 14,
+      "day": 13,
       "date": "2026-08-14",
       "status": "pending",
       "actualDuration": 0,
