@@ -80,11 +80,11 @@
     }
   ],
   "settings": {
+    "orgName": "顾家家居",
+    "deptName": "营运与人力资源部",
     "trialDays": 30,
     "minSummaryWords": 50,
-    "defaultDuration": 60,
-    "orgName": "顾家家居",
-    "deptName": "人才发展中心"
+    "defaultDuration": 60
   },
   "pushSubscriptions": {
     "u6": [
