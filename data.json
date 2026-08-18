@@ -84,7 +84,7 @@
     "deptName": "营运与人力资源部",
     "trialDays": 30,
     "minSummaryWords": 50,
-    "defaultDuration": 60
+    "defaultDuration": 15
   },
   "pushSubscriptions": {
     "u6": [
